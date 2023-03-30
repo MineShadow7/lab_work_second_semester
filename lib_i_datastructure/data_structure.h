@@ -1,7 +1,7 @@
 // Copyright 2022 Vinokurov Ivan
 
-#ifndef LIB_EXAMPLE_EXAMPLE_H_
-#define LIB_EXAMPLE_EXAMPLE_H_
+#ifndef LIB_IDATA_STRUCTURE_EXAMPLE_H_
+#define LIB_IDATA_STRUCTURE_EXAMPLE_H_
 
 template <class Type>
 class DataStructure {
