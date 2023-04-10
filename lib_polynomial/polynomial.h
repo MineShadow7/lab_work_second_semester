@@ -4,11 +4,15 @@
 #define LIB_POLYNOMIAL_POLYNOMIAL_H_
 
 #include "../lib_list/list.h"
+#include "sstream"
 
 class CMonomial {
  private:
 	double coefficient;
 	int degree[3];
+
+	bool checkequality(CMonomial m_monomial);
+
  public:
 	CMonomial();
 	CMonomial(const CMonomial& monomial);
