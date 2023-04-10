@@ -2,7 +2,7 @@
 #define LIB_TABLELINEARARRAY_TABLE_H_
 
 template<typename Type>
-class CLinearTableArray : public CTable<Type> {
+class CLinearTableArray : public ITable<Type> {
  private:
 	Type* data;
  public:

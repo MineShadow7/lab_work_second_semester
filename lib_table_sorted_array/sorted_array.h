@@ -2,7 +2,7 @@
 #define LIB_TABLESORTEDARRAY_TABLE_H_
 
 template<typename Type>
-class CSortedTableArray : public CTable<Type> {
+class CSortedTableArray : public ITable<Type> {
  private:
 	 Type* data;
  public:

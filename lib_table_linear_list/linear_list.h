@@ -2,7 +2,7 @@
 #define LIB_TABLELINEARLIST_TABLE_H_
 
 template<typename Type>
-class CLinearTableList : public CTable<Type> {
+class CLinearTableList : public ITable<Type> {
  private:
 	CList<Type> data;
  public:

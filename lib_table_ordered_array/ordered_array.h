@@ -2,7 +2,7 @@
 #define LIB_TABLEORDEREDARRAY_TABLE_H_
 
 template<typename Type>
-class COrderedTableArray : public CTable<Type> {
+class COrderedTableArray : public ITable<Type> {
  private:
 	 Type* data;
  public:
