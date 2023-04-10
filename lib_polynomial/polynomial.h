@@ -12,17 +12,22 @@ class CMonomial {
  public:
 	CMonomial();
 	CMonomial(const CMonomial& monomial);
-	CMonomial(int _coefficient, int* _degree);
+	CMonomial(double _coefficient, int* _degree);
 	~CMonomial();
 
 	std::string toString();
+
 	bool operator==(CMonomial _monomial);
 	bool operator!=(CMonomial _monomial);
+
+	CMonomial& operator=(CMonomial& _monomial);
+
 	CMonomial operator+(CMonomial _monomial); 
 	CMonomial operator-(CMonomial _monomial);
 	CMonomial operator*(CMonomial _monomial);
-	CMonomial operator*(double _coef);
+	CMonomial operator*(double _coefficient);
 	CMonomial operator/(CMonomial _monomial);
+
 	CMonomial getDerivative(CMonomial _monomial);
 };
 
@@ -36,22 +41,28 @@ class CPolynomial {
 	 ~CPolynomial();
 
 	 std::string toString();
+
 	 bool operator==(CPolynomial _polynomial);
 	 bool operator!=(CPolynomial _polynomial);
-	 double findResult(int _x, int _y, int _z);
+
+	 double findResult(double _x, double _y, double _z);
+
+	 void Parse(std::string _string);
 
 	 CPolynomial operator+(CMonomial _monomial);
 	 CPolynomial operator-(CMonomial _monomial);
 	 CPolynomial operator*(CMonomial _monomial);
 	 CPolynomial operator/(CMonomial _monomial);
 
-	 CPolynomial operator+(CPolynomial _monomial);
-	 CPolynomial operator-(CPolynomial _monomial);
-	 CPolynomial operator*(CPolynomial _monomial);
-	 CPolynomial operator*(double _coef);
-	 CPolynomial operator/(CPolynomial _monomial);
+	 CPolynomial& operator=(CPolynomial& _polynomial);
 
-	 CPolynomial getDerivative(CPolynomial _monomial);
+	 CPolynomial operator+(CPolynomial _polynomial);
+	 CPolynomial operator-(CPolynomial _polynomial);
+	 CPolynomial operator*(CPolynomial _polynomial);
+	 CPolynomial operator*(double _coefficient);
+	 CPolynomial operator/(CPolynomial _polynomial);
+
+	 CPolynomial getDerivative(CPolynomial _polynomial);
 };
 
 #endif
