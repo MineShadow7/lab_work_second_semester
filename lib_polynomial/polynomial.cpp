@@ -129,3 +129,30 @@ CMonomial CMonomial::getDerivative(CMonomial _monomial)
 };
 
 #pragma endregion
+
+#pragma region PolinomRealization
+CPolynomial::CPolynomial() { };
+
+CPolynomial::CPolynomial(CList<CMonomial> _list)
+{
+    list.cpy(_list);
+}
+
+CPolynomial::CPolynomial(const CPolynomial& _polynomial)
+{
+    list.cpy(_polynomial.list);
+}
+
+CPolynomial::~CPolynomial() { };
+
+CPolynomial& CPolynomial::operator=(CPolynomial& _polynomial)
+{
+    CList<CMonomial> cpy;
+    cpy.cpy(list);
+    for (int i = 0; i < cpy.size(); i++) {
+        cpy.remove(i) == _polynomial.list.remove(i);
+    }
+}
+
+
+#pragma endregion

@@ -173,7 +173,10 @@ public:
 		}
 		size--;
 	}
-
+	size_t size()
+	{
+		return this->size;
+	}
 };
 
 
