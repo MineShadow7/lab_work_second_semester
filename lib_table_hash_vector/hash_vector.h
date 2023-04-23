@@ -1,5 +1,7 @@
 #ifndef LIB_TABLEHASHVECTOR_TABLE_H_
 #define LIB_TABLEHASHVECTOR_TABLE_H_
+#include <string>
+#include "../lib_i_table/table.h"
 
 template<typename Type>
 class CHashTableMix : public ITable<Type> {

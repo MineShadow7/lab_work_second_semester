@@ -3,7 +3,7 @@
 #ifndef LIB_STACK_STACK_H_
 #define LIB_STACK_STACK_H_
 
-#include "../lib_datastructure/data_structure.h"
+#include "../lib_i_datastructure/data_structure.h"
 #include <iostream>
 
 template <class Type> class Stack;

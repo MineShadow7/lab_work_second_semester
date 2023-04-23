@@ -52,11 +52,11 @@ TEST(TPolynomial, can_multiply_monomial_to_polynomial) {
 TEST(TPolynomial, can_divide_polynomial_on_monomial) {
   ADD_FAILURE();
 }
-
+/* Крашит компилятор???
 TEST(TPolynomial, can_add_monomial_to_polynomial) {
   ADD_FAILURE();
 }
-
+*/ 
 TEST(TPolynomial, can_multiply_polynomial_on_scalar) {
   ADD_FAILURE();
 }

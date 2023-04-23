@@ -32,8 +32,8 @@ template <class Type>
 class CList {
 	CNode<Type>* head;
 	CNode<Type>* tail;
-	size_t size;
 public:
+	size_t size;
 	CList() {
 		head = nullptr;
 		tail = nullptr;
@@ -173,9 +173,9 @@ public:
 		}
 		size--;
 	}
-	size_t size()
+	Type getHead()
 	{
-		return this->size;
+		return head->data;
 	}
 };
 

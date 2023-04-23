@@ -6,14 +6,18 @@
 #include "../lib_list/list.h"
 #include "sstream"
 
+
 class CMonomial {
- private:
+private:
 	double coefficient;
 	int degree[3];
 
 	bool checkequality(CMonomial m_monomial);
 
- public:
+protected:
+	double getcoefficient();
+
+public:
 	CMonomial();
 	CMonomial(const CMonomial& monomial);
 	CMonomial(double _coefficient, int* _degree);
@@ -26,47 +30,47 @@ class CMonomial {
 
 	CMonomial& operator=(CMonomial& _monomial);
 
-	CMonomial operator+(CMonomial _monomial); 
+	CMonomial operator+(CMonomial _monomial);
 	CMonomial operator-(CMonomial _monomial);
 	CMonomial operator*(CMonomial _monomial);
 	CMonomial operator*(double _coefficient);
 	CMonomial operator/(CMonomial _monomial);
 
 	CMonomial getDerivative(CMonomial _monomial);
+	friend class CPolynomial;
 };
 
 class CPolynomial {
- private:
+private:
 	CList<CMonomial> list;
- public:
-	 CPolynomial();
-	 CPolynomial(const CPolynomial& _polynomial);
-	 CPolynomial(CList<CMonomial> _list);
-	 ~CPolynomial();
+public:
+	CPolynomial() { };
+	CPolynomial(const CPolynomial& _polynomial);
+	CPolynomial(CList<CMonomial> _list);
+	
+	~CPolynomial() { }
 
-	 std::string toString();
+	std::string toString();
 
-	 bool operator==(CPolynomial _polynomial);
-	 bool operator!=(CPolynomial _polynomial);
+	bool operator==(CPolynomial _polynomial);
+	bool operator!=(CPolynomial _polynomial);
+	double findResult(double _x, double _y, double _z);
+	void Parse(std::string _string);
 
-	 double findResult(double _x, double _y, double _z);
+	CPolynomial operator+(CMonomial _monomial);
+	CPolynomial operator-(CMonomial _monomial);
+	CPolynomial operator*(CMonomial _monomial);
+	CPolynomial operator/(CMonomial _monomial);
 
-	 void Parse(std::string _string);
+	CPolynomial& operator=(CPolynomial& _polynomial);
 
-	 CPolynomial operator+(CMonomial _monomial);
-	 CPolynomial operator-(CMonomial _monomial);
-	 CPolynomial operator*(CMonomial _monomial);
-	 CPolynomial operator/(CMonomial _monomial);
+	CPolynomial operator+(CPolynomial _polynomial);
+	CPolynomial operator-(CPolynomial _polynomial);
+	CPolynomial operator*(CPolynomial _polynomial);
+	CPolynomial operator*(double _coefficient);
+	CPolynomial operator/(CPolynomial _polynomial);
 
-	 CPolynomial& operator=(CPolynomial& _polynomial);
-
-	 CPolynomial operator+(CPolynomial _polynomial);
-	 CPolynomial operator-(CPolynomial _polynomial);
-	 CPolynomial operator*(CPolynomial _polynomial);
-	 CPolynomial operator*(double _coefficient);
-	 CPolynomial operator/(CPolynomial _polynomial);
-
-	 CPolynomial getDerivative(CPolynomial _polynomial);
+	CPolynomial getDerivative(CPolynomial _polynomial);
 };
 
 #endif
