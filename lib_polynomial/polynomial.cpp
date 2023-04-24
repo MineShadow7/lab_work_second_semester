@@ -495,4 +495,99 @@ CPolynomial CPolynomial::operator-(CPolynomial _polynomial)
     return CPolynomial(new_list);
 }
 
+CPolynomial CPolynomial::operator*(CPolynomial _polynomial)
+{
+    CPolynomial result;
+    if(list.isEmpty() || _polynomial.list.isEmpty())
+    {
+        return result;
+    }
+    CList<CMonomial> cpylist;
+    cpylist.cpy(list);
+    while (!cpylist.isEmpty() && !_polynomial.list.isEmpty())
+    {
+
+        CMonomial monom1;
+        CMonomial monom2;
+        CMonomial resultmonom;
+        monom1 = cpylist.pop_back();
+        monom2 = _polynomial.list.pop_back();
+        resultmonom = monom1 * monom2;
+        result.list.push_back(resultmonom);
+    }
+    return result;
+}
+
+CPolynomial CPolynomial::operator*(double _coefficient)
+{
+    CPolynomial result = *this;
+    CList<CMonomial> cpylist;
+    cpylist.cpy(list);
+    while (!cpylist.isEmpty())
+    {
+        CMonomial monom1;
+        CMonomial resultmonom;
+        monom1 = cpylist.pop_back();
+        monom1.coefficient * _coefficient;
+        resultmonom = monom1;
+        result.list.push_back(resultmonom);
+    }
+    return result;
+}
+
+CPolynomial CPolynomial::operator/(CPolynomial _polynomial)
+{
+    CPolynomial result;
+    if (_polynomial.list.isEmpty())
+        throw std::invalid_argument("Division by Zero.");
+    if (_polynomial.list.size == 1 &&
+        (_polynomial.list.pop_front().degree[0] == 0 &&
+            _polynomial.list.pop_front().degree[1] == 0 &&
+            _polynomial.list.pop_front().degree[2] == 0))
+    {
+        CMonomial divMon = _polynomial.list.pop_back();
+        CList<CMonomial> cpylist;
+        cpylist.cpy(list);
+        while (!cpylist.isEmpty())
+        {
+            CMonomial monom1;
+            CMonomial resultmonom;
+            monom1 = cpylist.pop_back();
+            resultmonom = monom1 / divMon;
+            result.list.push_back(resultmonom);
+        }
+    }
+    else
+    {
+        CPolynomial divident = *this;
+        while (divident.list.size > 0 && (divident.list.getHead().degree[0] >= _polynomial.list.getHead().degree[0] &&
+            divident.list.getHead().degree[1] >= _polynomial.list.getHead().degree[1] &&
+            divident.list.getHead().degree[2] >= _polynomial.list.getHead().degree[2]))
+        {
+            CMonomial chastnoe = divident.list.pop_back() / _polynomial.list.pop_back();
+            result.list.push_back(chastnoe);
+            CPolynomial product = _polynomial * chastnoe;
+            divident = divident - product;
+        }
+    }
+    return result;
+}
+
+CPolynomial CPolynomial::getDerivative(CPolynomial _polynomial)
+{
+    CPolynomial result = *this;
+    CList<CMonomial> cpylist;
+    cpylist.cpy(list);
+    while (!cpylist.isEmpty())
+    {
+        CMonomial monom1;
+        CMonomial resultmonom;
+        monom1 = cpylist.pop_back();
+        monom1 = monom1.getDerivative(monom1);
+        result.list.push_back(monom1);
+    }
+    return result;
+}
+
+
 #pragma endregion
