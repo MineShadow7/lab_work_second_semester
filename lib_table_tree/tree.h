@@ -2,7 +2,7 @@
 #define LIB_TABLETREE_TABLE_H_
 
 template<typename Type>
-class CTreeTable : public CTable<Type> {
+class CTreeTable : public ITable<Type> {
  private:
 	 Type* data;
  public:

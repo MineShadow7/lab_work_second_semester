@@ -2,7 +2,7 @@
 #define LIB_TABLEHASHLIST_TABLE_H_
 
 template<typename Type>
-class CHashTableList : public CTable<Type> {
+class CHashTableList : public ITable<Type> {
  private:
 	CList data;
  public:

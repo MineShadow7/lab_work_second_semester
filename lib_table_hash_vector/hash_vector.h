@@ -2,7 +2,7 @@
 #define LIB_TABLEHASHVECTOR_TABLE_H_
 
 template<typename Type>
-class CHashTableMix : public CTable<Type> {
+class CHashTableMix : public ITable<Type> {
  private:
 	std::vector<std::pair<Type, Type>> data;
  public:

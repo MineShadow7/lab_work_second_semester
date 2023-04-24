@@ -3,15 +3,17 @@
 #ifndef LIB_ITABLE_TABLE_H_
 #define LIB_ITABLE_TABLE_H_
 
+#include <string>
 #include <vector>
-#include "../lib_list/list.h"
 
 template<typename Type>
-class CTable {
+class ITable 
+{
  public:
-	 virtual int insert(Type obj);
-	 virtual int remove(Type obj);
-	 virtual Type find(std::string key);
+	 virtual bool insert(const Type obj) = 0;
+	 virtual bool remove(const Type obj) = 0;
+	 virtual bool contains(const Type obj) = 0;
+	 virtual Type find(const std::string key) = 0;
 };
 
 #endif
