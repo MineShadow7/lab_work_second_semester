@@ -11,7 +11,6 @@ class CLinearTableList : public ITable<Type> {
 	CList<Type> data;
  public:
 	 CLinearTableList() {}
-    ~CLinearTableList() = default;
 	void insert(Type obj) override
     {
 		data.push_back(obj);
@@ -22,7 +21,7 @@ class CLinearTableList : public ITable<Type> {
         cpy.cpy(data);
         Type currentObject;
         int index = 0;
-        while (!data.isEmpty())
+        while (!cpy.isEmpty())
         {
             currentObject = cpy.pop_back();
             if (currentObject == obj)
@@ -35,7 +34,7 @@ class CLinearTableList : public ITable<Type> {
         CList<Type> cpy;
         cpy.cpy(data);
         Type currentObject;
-        while (!data.isEmpty())
+        while (!cpy.isEmpty())
         {
             currentObject = cpy.pop_back();
             if (currentObject == obj)
@@ -48,16 +47,19 @@ class CLinearTableList : public ITable<Type> {
         CList<Type> cpy;
         cpy.cpy(data);
         Type currentObject;
-        while (!data.isEmpty())
+        while (!cpy.isEmpty())
         {
-            currentObject = cpy.pop_back();
-            // currentObject.first, потому что мы предполагаемо храним std::pair<KEY, VALUE>.
-            if (currentObject.first == key)
+            
+            // currentObject.first, потому что мы предполагаемо храним std::pair<string KEY, VALUE>.
+            if (cpy.pop_back().first == key)
             {
+                currentObject = cpy.pop_back();
                 return currentObject;
             }
         }
-        return currentObject;
+        if(currentObject.second == NULL)
+            throw std::out_of_range("Key not found");
+        
 	}
 };
 

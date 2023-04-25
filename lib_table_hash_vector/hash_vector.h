@@ -4,14 +4,7 @@
 #include <string>
 #include "../lib_i_table/table.h"
 
-namespace std {
-	template <>
-	struct hash<std::pair<std::string, int>> {
-		size_t operator()(const std::pair<std::string, int>& obj) const {
-			return std::hash<std::string>{}(obj.first) ^ std::hash<int>{}(obj.second);
-		}
-	};
-}
+
 
 template<typename Type>
 class CHashTableMix : public ITable<Type> {
@@ -20,7 +13,7 @@ class CHashTableMix : public ITable<Type> {
 	    std::vector<Type>* data;
 		
 		size_t hashFunction(const Type& obj) const {
-			return std::hash<Type>{}(obj) % size;
+			return std::hash<std::string>{}(obj.first) % size;
 		}
  public:
      explicit CHashTableMix(const size_t _size)
