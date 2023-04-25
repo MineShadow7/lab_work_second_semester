@@ -1,5 +1,6 @@
 #ifndef LIB_TABLELINEARARRAY_TABLE_H_
 #define LIB_TABLELINEARARRAY_TABLE_H_
+
 #include "../lib_i_table/table.h"
 #include "../lib_polynomial/polynomial.h"
 
