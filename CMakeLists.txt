@@ -19,6 +19,7 @@ add_subdirectory(lib_table_linear_array)
 add_subdirectory(lib_table_linear_list)
 add_subdirectory(lib_table_ordered_array)
 add_subdirectory(lib_table_tree)
+add_subdirectory(main)
 
 
 option(BTEST "build test?" ON)   
