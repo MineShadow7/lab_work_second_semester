@@ -3,14 +3,13 @@
 #include "../lib_i_table/table.h"
 #include "../lib_polynomial/polynomial.h"
 
-template<typename Type>
 class COrderedTableArray{
 private:
 	std::pair<CPolynomial, int>* data;
 	int size;
 	int capacity;
 public:
-	CLinearTableArray() {
+	COrderedTableArray() {
 		size = 0;
 		capacity = 20;
 		data = new std::pair<CPolynomial, int>[capacity];
@@ -66,10 +65,10 @@ public:
 		int right = size - 1;
 		while (left <= right) {
 			int middle = (left + right) / 2;
-			if (data[middle].second == obj.second) {
+			if (data[middle].second == key) {
 				return data[middle];
 			}
-			else if (data[middle].second < obj.second) {
+			else if (data[middle].second < key) {
 				left = middle + 1;
 			}
 			else {
