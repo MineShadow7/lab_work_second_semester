@@ -10,8 +10,8 @@ template<typename Type>
 class ITable 
 {
  public:
-	 virtual bool insert(const Type obj) = 0;
-	 virtual bool remove(const Type obj) = 0;
+	 virtual void insert(const Type obj) = 0;
+	 virtual void remove(const Type obj) = 0;
 	 virtual bool contains(const Type obj) = 0;
 	 virtual Type find(const std::string key) = 0;
 };
