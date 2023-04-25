@@ -50,7 +50,7 @@ class CLinearTableList : public ITable<Type> {
         while (!cpy.isEmpty())
         {
             
-            // currentObject.first, потому что мы предполагаемо храним std::pair<string KEY, VALUE>.
+            // currentObject.first, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ std::pair<string KEY, VALUE>.
             if (cpy.pop_back().first == key)
             {
                 currentObject = cpy.pop_back();

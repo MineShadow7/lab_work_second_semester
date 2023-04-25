@@ -1,6 +1,5 @@
 #ifndef LIB_TABLESORTEDARRAY_TABLE_H_
 #define LIB_TABLESORTEDARRAY_TABLE_H_
-#include <string>
 #include "../lib_i_table/table.h"
 
 template<typename Type>

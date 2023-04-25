@@ -4,8 +4,6 @@
 #include <string>
 #include "../lib_i_table/table.h"
 
-
-
 template<typename Type>
 class CHashTableMix : public ITable<Type> {
  private:

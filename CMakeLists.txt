@@ -8,7 +8,7 @@ include(cmake/function.cmake)
                                  
 								 
 
-add_subdirectory(lib_i_datastructure)
+
 add_subdirectory(lib_i_table)
 add_subdirectory(lib_list)
 add_subdirectory(lib_polynomial)
@@ -20,7 +20,7 @@ add_subdirectory(lib_table_linear_list)
 add_subdirectory(lib_table_ordered_array)
 add_subdirectory(lib_table_sorted_array)
 add_subdirectory(lib_table_tree)
-add_subdirectory(main)       
+
 
 option(BTEST "build test?" ON)   
 
