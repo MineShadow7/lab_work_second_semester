@@ -18,7 +18,6 @@ add_subdirectory(lib_table_hash_vector)
 add_subdirectory(lib_table_linear_array)
 add_subdirectory(lib_table_linear_list)
 add_subdirectory(lib_table_ordered_array)
-add_subdirectory(lib_table_sorted_array)
 add_subdirectory(lib_table_tree)
 
 
