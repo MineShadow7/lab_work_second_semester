@@ -9,7 +9,7 @@
 
 
 int main() {
-    
+
     // Testing Monoms.
     int* deg = new int(3);
     deg[0] = 1;
@@ -55,85 +55,104 @@ int main() {
     list.push_back(monom2);
     CPolynomial polynom(list);
     std::cout << polynom.toString();
-    
 
-    
-    // Создаем объект таблицы
-    CLinearTableList<std::pair<std::string, int>> table;
+
+
+    // Создаем объект таблицы и тестовые объекты
+    CLinearTableList<CPolynomial> table;
+
+    double coef1 = 4;
+    int* deg1 = new int(3);
+    deg1[0] = 1;
+    deg1[1] = 2;
+    deg1[2] = 3;
+
+    double coef2 = 5;
+    int* deg2 = new int(3);
+    deg2[0] = 4;
+    deg2[1] = 5;
+    deg2[2] = 6;
+
+    double coef3 = 6;
+    int* deg3 = new int(3);
+    deg3[0] = 7;
+    deg3[1] = 8;
+    deg3[2] = 9;
+
+
+    CMonomial testmonom1(coef1, deg1);
+    CMonomial testmonom2(coef2, deg2);
+    CMonomial testmonom3(coef3, deg3);
+
+
+    CList<CMonomial> list1;
+    CList<CMonomial> list2;
+    CList<CMonomial> list3;
+    list1.push_back(testmonom1);
+    list2.push_back(testmonom2);
+    list3.push_back(testmonom3);
+
+    CPolynomial polynomial1(list1);
+    CPolynomial polynomial2(list2);
+    CPolynomial polynomial3(list3);
+
+    std::cout << polynomial1.toString() << std::endl;
+    std::cout << polynomial2.toString() << std::endl;
+    std::cout << polynomial3.toString() << std::endl;
+
 
     // Вставляем элементы
-    table.insert(std::pair<std::string, int>("key1", 12));
-    table.insert(std::pair<std::string, int>("key2", 13));
-    table.insert(std::pair<std::string, int>("key3", 14));
 
-    std::pair<std::string, int> objtofind("key1", 12);
-    if (table.contains(objtofind)) {
+    table.insert(polynomial1);
+    table.insert(polynomial2);
+    table.insert(polynomial3);
+
+
+    if (table.contains(polynomial1)) {
         std::cout << "Found object 1!" << std::endl;
-    }else
+    }
+    else
         std::cout << "Couldn't find object 1..." << std::endl;
 
     // Удаляем элемент
-    std::pair<std::string, int> objtoremove("key2", 13);
-    table.remove(objtoremove);
+
+    table.remove(polynomial2);
 
     // Ищем элемент по ключу
     try {
-        const std::pair<std::string, int> found = table.find("key2");
-        std::cout << found.first << " " << found.second << std::endl;
+        CPolynomial found = table.find(polynomial2.toString());
+        std::cout << found.toString() << std::endl;
     }
     catch (const std::out_of_range) {
         std::cout << "Caught and Exception, code works as intendent." << std::endl;
     }
 
-    CHashTableMix<std::pair<std::string, int>> MyHashTable1(10);
 
-    std::pair<std::string, int> obj1("key1", 13);
-    std::pair<std::string, int> obj2("key2", 14);
-    std::pair<std::string, int> obj3("key3", 15);
-    
-    MyHashTable1.insert(obj1);
-    MyHashTable1.insert(obj2);
-    MyHashTable1.insert(obj3);
 
-    std::cout << "Value for key 1: " << MyHashTable1.find("key1").second << std::endl;
-    std::cout << "Value for key 2: " << MyHashTable1.find("key2").second << std::endl;
-    std::cout << "Value for key 3: " << MyHashTable1.find("key3").second << std::endl;
 
-    MyHashTable1.remove(obj2);
 
-    try {
-        std::cout << "Value for key 15 after removal: " << MyHashTable1.find("key2").second << std::endl;
+    CHashTableMix<CPolynomial> MyHashTable2(20);
 
-    }
-    catch (const std::out_of_range) {
-        std::cout << "Caught and Exception, code works as intendent." << std::endl;
-    }
+    // Заполняем таблицу значениями
 
-    
-    CHashTableMix<std::pair<std::string, int>> MyHashTable2(20);
+    MyHashTable2.insert(polynomial1);
+    MyHashTable2.insert(polynomial2);
+    MyHashTable2.insert(polynomial3);
 
-    // Добавляем несколько элементов
-    std::pair<std::string, int> obj4("apple", 5);
-    std::pair<std::string, int> obj5("banana", 3);
-    std::pair<std::string, int> obj6("orange", 7);
-    MyHashTable2.insert(obj4);
-    MyHashTable2.insert(obj5);
-    MyHashTable2.insert(obj6);
+    // Найти полином 1 и вывести его значение 4x^1 * y^2 * z^3
+    CPolynomial value = MyHashTable2.find(polynomial1.toString());
+    std::cout << "Value of polinomial1 is " << value.toString() << std::endl;
 
-    // Получаем значение по ключу
-    std::pair<std::string, int> value = MyHashTable2.find("banana");
-    std::cout << "Value of banana is " << value.second << std::endl;
+    // Удалить полином 2. Его больше не должно быть в таблице
+    MyHashTable2.remove(polynomial2);
 
-    // Удаляем элемент по ключу
-    MyHashTable2.remove(std::make_pair(std::string("orange"), 0));
-
-    // Проверяем, есть ли элемент в таблице
-    if (MyHashTable2.contains(std::make_pair(std::string("orange"), 0))) {
-        std::cout << "Orange is in the table" << std::endl;
+    // Проверяем есть ли в таблице полином 2. Его не должно быть в таблице
+    if (MyHashTable2.contains(polynomial2)) {
+        std::cout << "Polinom 2 is in the table" << std::endl;
     }
     else {
-        std::cout << "Orange is not in the table" << std::endl;
+        std::cout << "Polinom 2 is not in the table" << std::endl;
     }
-    
+
     return 0;
 }

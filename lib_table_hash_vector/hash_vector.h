@@ -6,43 +6,48 @@
 
 template<typename Type>
 class CHashTableMix : public ITable<Type> {
- private:
-	 size_t size;
-	    std::vector<Type>* data;
-		
-		size_t hashFunction(const Type& obj) const {
-			return std::hash<std::string>{}(obj.first) % size;
-		}
- public:
-     explicit CHashTableMix(const size_t _size)
-	 {
-		 size = _size;
-		 data = new std::vector<Type>[size];
-	 }
+private:
+	size_t size;
+	std::vector<std::pair<std::string, Type>>* data;
+
+	size_t hashFunction(const std::string& obj) const {
+		return std::hash<std::string>{}(obj) % size;
+	}
+public:
+	explicit CHashTableMix(const size_t _size)
+	{
+		size = _size;
+		data = new std::vector<std::pair<std::string, Type>>[size];
+	}
 
 	~CHashTableMix()
-     {
+	{
 		delete[] data;
-     }
+	}
 
 	void insert(Type obj) override {
-		size_t index = hashFunction(obj);
-		data[index].push_back(obj);
+		size_t index = hashFunction(obj.toString());
+		std::pair<std::string, Type> newpair(obj.toString(), obj);
+		data[index].push_back(newpair);
 	}
 
 	void remove(Type obj) override {
-		size_t index = hashFunction(obj);
-		auto& vec = data[index];
-		auto it = std::find(vec.begin(), vec.end(), obj);
-		if (it != vec.end()) {
-			vec.erase(it);
+		size_t index = hashFunction(obj.toString());
+		std::vector<std::pair<std::string, Type>> vec = data[index];
+		if (vec.data()->second == obj)
+		{
+			data->erase(data->begin() + index);
 		}
 	}
 
 	bool contains(Type obj) override {
-		size_t index = hashFunction(obj);
-		auto& vec = data[index];
-		return std::find(vec.begin(), vec.end(), obj) != vec.end();
+		size_t index = hashFunction(obj.toString());
+		std::vector<std::pair<std::string, Type>> vec = data[index];
+		if (vec.data()->second == obj)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	Type find(std::string key) override {
@@ -50,7 +55,7 @@ class CHashTableMix : public ITable<Type> {
 			auto& vec = data[i];
 			for (auto& obj : vec) {
 				if (obj.first == key) {
-					return obj;
+					return obj.second;
 				}
 			}
 		}

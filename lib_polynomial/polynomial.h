@@ -47,7 +47,7 @@ public:
 	CPolynomial() { };
 	CPolynomial(const CPolynomial& _polynomial);
 	CPolynomial(CList<CMonomial> _list);
-	
+
 	~CPolynomial() { }
 
 	std::string toString();
@@ -62,7 +62,7 @@ public:
 	CPolynomial operator*(CMonomial _monomial);
 	CPolynomial operator/(CMonomial _monomial);
 
-	CPolynomial& operator=(CPolynomial& _polynomial);
+	CPolynomial operator=(CPolynomial _polynomial);
 
 	CPolynomial operator+(CPolynomial _polynomial);
 	CPolynomial operator-(CPolynomial _polynomial);

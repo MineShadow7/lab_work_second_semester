@@ -159,11 +159,11 @@ std::string CPolynomial::toString()
     bool first = true;
     CList<CMonomial> cpylist;
     cpylist.cpy(list);
-    while(!cpylist.isEmpty())
+    while (!cpylist.isEmpty())
     {
         CMonomial monom;
         monom = cpylist.pop_back();
-        if(!first && monom.getcoefficient() >= 0)
+        if (!first && monom.getcoefficient() >= 0)
         {
             oss << "+ ";
         }
@@ -175,7 +175,6 @@ std::string CPolynomial::toString()
 
 bool CPolynomial::operator==(CPolynomial _polynomial)
 {
-
     CList<CMonomial> cpy;
     cpy.cpy(list);
     bool equal = false;
@@ -190,6 +189,8 @@ bool CPolynomial::operator==(CPolynomial _polynomial)
     }
     return equal;
 }
+
+
 
 bool CPolynomial::operator!=(CPolynomial _polynomial)
 {
@@ -305,7 +306,7 @@ CPolynomial CPolynomial::operator+(CMonomial _monomial)
 {
     CList<CMonomial> new_list;
     new_list.cpy(list);
-    
+
     CList<CMonomial> cpy;
     cpy.cpy(list);
     while (!cpy.isEmpty()) {
@@ -387,7 +388,7 @@ CPolynomial CPolynomial::operator/(CMonomial _monomial)
     return CPolynomial(new_list);
 }
 
-CPolynomial& CPolynomial::operator=(CPolynomial& _polynomial)
+CPolynomial CPolynomial::operator=(CPolynomial _polynomial)
 {
     list.cpy(_polynomial.list);
     return *this;
@@ -404,28 +405,29 @@ CPolynomial CPolynomial::operator+(CPolynomial _polynomial) {
         CMonomial monom2;
         monom1 = cpy.pop_back();
         monom2 = _polynomial.list.pop_back();
-        if(monom1.degree[0] > monom2.degree[0] || 
-            (monom1.degree[0] == monom2.degree[0] && monom1.degree[1] > monom2.degree[1]) && 
-            (monom1.degree[0] == monom2.degree[0] && monom1.degree[1] == monom2.degree[1] && 
+        if (monom1.degree[0] > monom2.degree[0] ||
+            (monom1.degree[0] == monom2.degree[0] && monom1.degree[1] > monom2.degree[1]) &&
+            (monom1.degree[0] == monom2.degree[0] && monom1.degree[1] == monom2.degree[1] &&
                 monom1.degree[2] > monom2.degree[2]))
         {
             new_list.push_back(monom1);
         }
-        else if(monom1.degree[0] < monom2.degree[0] || 
-            (monom1.degree[0] == monom2.degree[0] && monom1.degree[1] < monom2.degree[1]) && 
-            (monom1.degree[0] == monom2.degree[0] && monom1.degree[1] == monom2.degree[1] && 
+        else if (monom1.degree[0] < monom2.degree[0] ||
+            (monom1.degree[0] == monom2.degree[0] && monom1.degree[1] < monom2.degree[1]) &&
+            (monom1.degree[0] == monom2.degree[0] && monom1.degree[1] == monom2.degree[1] &&
                 monom1.degree[2] < monom2.degree[2]))
         {
             new_list.push_back(monom2);
-        }else
+        }
+        else
         {
             CMonomial monom3 = monom1 + monom2;
-            if(monom3.getcoefficient() != 0)
+            if (monom3.getcoefficient() != 0)
             {
                 new_list.push_back(monom3);
             }
         }
-        
+
     }
     while (!cpy.isEmpty())
     {
@@ -465,21 +467,22 @@ CPolynomial CPolynomial::operator-(CPolynomial _polynomial)
             (monom1.degree[0] == monom2.degree[0] && monom1.degree[1] == monom2.degree[1] &&
                 monom1.degree[2] < monom2.degree[2]))
         {
-            
+
             CMonomial monom3 = monom2;
             monom3.coefficient = -monom3.coefficient;
             new_list.push_back(monom3);
-        }else
+        }
+        else
         {
             CMonomial monom3 = monom1;
             monom3.coefficient = monom3.coefficient - monom2.coefficient;
-            if(monom3.getcoefficient() != 0)
+            if (monom3.getcoefficient() != 0)
             {
                 new_list.push_back(monom3);
             }
         }
     }
-    while(!cpy.isEmpty())
+    while (!cpy.isEmpty())
     {
         CMonomial monom1;
         monom1 = cpy.pop_back();
@@ -498,7 +501,7 @@ CPolynomial CPolynomial::operator-(CPolynomial _polynomial)
 CPolynomial CPolynomial::operator*(CPolynomial _polynomial)
 {
     CPolynomial result;
-    if(list.isEmpty() || _polynomial.list.isEmpty())
+    if (list.isEmpty() || _polynomial.list.isEmpty())
     {
         return result;
     }
@@ -528,7 +531,7 @@ CPolynomial CPolynomial::operator*(double _coefficient)
         CMonomial monom1;
         CMonomial resultmonom;
         monom1 = cpylist.pop_back();
-        monom1.coefficient * _coefficient;
+        monom1.coefficient* _coefficient;
         resultmonom = monom1;
         result.list.push_back(resultmonom);
     }
