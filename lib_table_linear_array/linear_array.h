@@ -4,18 +4,19 @@
 #include "../lib_i_table/table.h"
 #include "../lib_polynomial/polynomial.h"
 
+template<typename Type>
 class CLinearTableArray {
  private:
-	std::pair<CPolynomial, int>* data;
+	Type* data;
 	int size;
 	int capacity;
  public:
 	 CLinearTableArray() {
 		 size = 0;
 		 capacity = 20;
-		 data = new std::pair<CPolynomial, int>[capacity];
+		 data = new Type[capacity];
 	 }
-	 void insert(std::pair<CPolynomial, int> obj) {
+	 void insert(Type obj) {
 		 if (size < capacity) {
 			 data[size].first = obj.first;
 			 data[size].second = obj.second;
@@ -23,7 +24,7 @@ class CLinearTableArray {
 		 }
 		 else {
 			 int new_capacity = capacity * 2;
-			 std::pair<CPolynomial, int>* new_data = new std::pair<CPolynomial, int>[new_capacity];
+			 Type* new_data = new Type[new_capacity];
 			 for (int i = 0; i < size; i++) {
 				 new_data[i].first = data[i].first;
 				 new_data[i].second = data[i].second;
@@ -36,7 +37,7 @@ class CLinearTableArray {
 			 size++;
 		 }
 	}
-	 void remove(std::pair<CPolynomial, int> obj) {
+	 void remove(Type obj) {
 		 for (int i = 0; i < size; i++) {
 			 if (data[i].second == obj.second) {
 				 for (int j = i; j < size - 1; j++) {
@@ -48,14 +49,14 @@ class CLinearTableArray {
 			 }
 		 }
 	}
-	 std::pair<CPolynomial, int> find(int key) {
+	 Type find(std::string key) {
 		 for (int i = 0; i < size; i++)
-			 if (key == data[i].second)
+			 if (key == data[i].first)
 				 return data[i];
 	}
-	bool contains(std::pair<CPolynomial, int> obj) {
+	bool contains(Type obj) {
 		for (int i = 0; i < size; i++) {
-			if (data[i] == obj) {
+			if (data[i].first == obj.first) {
 				return true;
 			}
 		}
