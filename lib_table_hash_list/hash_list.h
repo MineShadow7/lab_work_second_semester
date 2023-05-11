@@ -1,6 +1,6 @@
 #ifndef LIB_TABLEHASHLIST_TABLE_H_
 #define LIB_TABLEHASHLIST_TABLE_H_
-#define SIZE 20
+#define SIZE 10
 #include "../lib_i_table/table.h"
 #include "../lib_list/list.h"
 #include "../lib_polynomial/polynomial.h"
@@ -30,7 +30,7 @@ public:
         while (!arrTemp->isEmpty()) {
             Type tempData;
             tempData = arrTemp->pop_back();
-            if (tempData == obj) {
+            if (tempData.second == obj.second) {
                 return true;
             }
         }
@@ -54,12 +54,24 @@ public:
         CList<Type>* arrTemp = new CList<Type>();
         arrTemp->cpy(arr[key]);
         while (!arrTemp->isEmpty()) {
-            if (arrTemp->pop_back() == obj) {
+            if (arrTemp->pop_back().second == obj.second) {
                 break;
             }
             index++;
         }
         arr[key].remove(index);
+    }
+    void print() {
+        for (int i = 0; i < SIZE; i++) {
+            CList<Type>* arrTemp = new CList<Type>();
+            arrTemp->cpy(arr[i]);
+
+            while (!arrTemp->isEmpty()) {
+                Type tempData;
+                tempData = arrTemp->pop_back();
+                std::cout << tempData.first << "   " << tempData.second.toString() << std::endl;
+            }
+        }
     }
 };
 

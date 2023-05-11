@@ -8,53 +8,53 @@
 template<typename Type>
 class CLinearTableList : public ITable<Type> {
 private:
-    CList<std::pair<std::string, Type>> data;
+    CList<Type> data;
 public:
     CLinearTableList() {};
 
     void insert(Type obj) override
     {
-        data.push_back(std::make_pair(obj.toString(), obj));
+        data.push_back(obj);
     }
     void remove(Type obj) override
     {
-        CList<std::pair<std::string, Type>> cpy;
+        CList<Type> cpy;
         cpy.cpy(data);
         Type currentObject;
         int index = 0;
         while (!cpy.isEmpty())
         {
-            currentObject = cpy.pop_back().second;
-            if (currentObject == obj)
+            currentObject = cpy.pop_back();
+            if (currentObject.second == obj.second)
                 data.remove(index);
             index++;
         }
     }
     bool contains(const Type obj) override
     {
-        CList<std::pair<std::string, Type>> cpy;
+        CList<Type> cpy;
         cpy.cpy(data);
-        std::pair<std::string, Type> currentObject;
+        Type currentObject;
         while (!cpy.isEmpty())
         {
             currentObject = cpy.pop_back();
-            if (currentObject.second == obj)
+            if (currentObject.second == obj.second)
                 return true;
         }
         return false;
     }
     Type find(std::string key) override
     {
-        CList<std::pair<std::string, Type>> cpy;
+        CList<Type> cpy;
         cpy.cpy(data);
-        std::pair<std::string, Type> currentObject;
+        Type currentObject;
         while (!cpy.isEmpty())
         {
             // currentObject.first, потому что мы предполагаемо храним std::pair<string KEY, POLINOM>.
             if (cpy.pop_back().first == key)
             {
                 currentObject = cpy.pop_back();
-                return currentObject.second;
+                return currentObject;
             }
         }
         if (cpy.isEmpty() && currentObject.first != key)
@@ -63,13 +63,13 @@ public:
     void print() {
         std::cout << "Table Linear List OBJ & KEY: " << std::endl;
         int polynum = 0;
-        CList<std::pair<std::string, Type>> cpy;
+        CList<Type> cpy;
         cpy.cpy(data);
-        std::pair<std::string, Type> currentObject;
+        Type currentObject;
         while (!cpy.isEmpty())
         {
             currentObject = cpy.pop_back();
-            std::cout << "obj" << polynum + 1 << " " << currentObject.first << std::endl;
+            std::cout << "obj" << polynum + 1 << " " << currentObject.first << "    " << currentObject.second.toString() << std::endl;
             polynum++;
         }
     }

@@ -154,11 +154,13 @@ int main() {
     //else {
     //    std::cout << "it's over" << std::endl;
     //}
-    COrderedTableArray<std::pair<std::string, int>> tree;
-    std::pair<std::string, int> temp1{ "a", 1 };
-    std::pair<std::string, int> temp2{"b", 2 };
-    std::pair<std::string, int> temp3{ "c", 2 };
-    std::pair<std::string, int> temp4{ "d", 3 };
+    CPolynomial polynomial;
+    polynomial.Parse("(2x) + (2y^2)");
+    CLinearTableList<std::pair<std::string, CPolynomial>> tree;
+    std::pair<std::string, CPolynomial> temp1{ "a", polynomial };
+    std::pair<std::string, CPolynomial> temp2{"b", polynomial };
+    std::pair<std::string, CPolynomial> temp3{ "c", polynomial };
+    std::pair<std::string, CPolynomial> temp4{ "d", polynomial };
     tree.insert(temp1);
     tree.insert(temp2);
     tree.insert(temp4);
@@ -170,31 +172,8 @@ int main() {
         std::cout << "it's over" << std::endl;
     }
 
-    CPolynomial test;
-    std::string expression = "(2x^2y) + (3x^2yz) + (4xy^2)";
-    test.Parse(expression);
-    std::cout << test.toString() << std::endl;
-    std::cout << test.findResult(2, 3, 4, expression) << std::endl;
+    tree.print();
 
 
-    //Example of inner workings of Polynomial. Basic HOW-TO-DO-WORK with it.
-    std::string userstring = "(2x^2y) + (3x^2yz) + (4xy^2)";
-    double x, y, z;
-    std::cout << "Hello! Let's calculate Polynomial strings. Format of string: (Monomial expr) +-*/ (Monomial expr) +-*/ ..." << std::endl;
-    std::cout << "Your Polynomial string: " << userstring;
-    CPolynomial usertest;
-    usertest.Parse(userstring);
-    std::cout << std::endl << "This is how the class contains the Monoms of string Polynomial: " << usertest.toString() << std::endl;
-    std::cout << "Now let's calculate the result of said Polynomial string: " << std::endl;
-    std::cout << "Input x: ";
-    std::cin >> x;
-    std::cout << std::endl;
-    std::cout << "Input y: ";
-    std::cin >> y;
-    std::cout << std::endl;
-    std::cout << "Input z: ";
-    std::cin >> z;
-    std::cout << std::endl;
-    std::cout << "The result of " << userstring << " In point " << x << " " << y << " " << z << " " << "is: " << usertest.findResult(x, y, z, userstring);
     return 0;
 }

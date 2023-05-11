@@ -34,6 +34,17 @@ template <typename Type>
 class CTreeTable {
 private:
     CNodeTree<Type>* root;
+    int size;
+
+    void print(CNodeTree<Type>* node) {
+        if (node == nullptr) {
+            return;
+        }
+
+        print(node->left);
+        std::cout << node->data.first << "   " << node->data.second.toString() << std::endl;
+        print(node->right);
+    }
 
     int stringToInt(std::string _str) {
         int tempInt = 0;
@@ -142,6 +153,7 @@ private:
 public:
     CTreeTable() {
         root = nullptr;
+        size = 0;
     }
 
     ~CTreeTable() {
@@ -161,6 +173,7 @@ public:
             if (stringToInt(key.first) < stringToInt(parent->data.first)) {
                 if (parent->left == nullptr) {
                     parent->left = node;
+                    size++;
                     break;
                 }
                 parent = parent->left;
@@ -168,6 +181,7 @@ public:
             else if (stringToInt(key.first) > stringToInt(parent->data.first)) {
                 if (parent->right == nullptr) {
                     parent->right = node;
+                    size++;
                     break;
                 }
                 parent = parent->right;
@@ -181,6 +195,7 @@ public:
 
     void remove(Type key) {
         root = remove(root, key);
+        size--;
     }
 
     bool contains(Type key) {
@@ -213,6 +228,10 @@ public:
             }
         }
         return nullptr;
+    }
+
+    void print() {
+        print(root);
     }
 };
 

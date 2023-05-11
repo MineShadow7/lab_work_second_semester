@@ -10,6 +10,13 @@ private:
 	Type* data;
 	int size;
 	int capacity;
+	int stringToInt(std::string _str) {
+		int tempInt = 0;
+		for (int i = 0; i < _str.size(); i++) {
+			tempInt += _str[i];
+		}
+		return tempInt;
+	}
 public:
 	COrderedTableArray() {
 		size = 0;
@@ -19,7 +26,7 @@ public:
 	void insert(Type obj) {
 		if (size < capacity) {
 			int i = size - 1;
-			while (i >= 0 && data[i].second > obj.second) {
+			while (i >= 0 && stringToInt(data[i].first) > stringToInt(obj.first)) {
 				data[i + 1].first = data[i].first;
 				data[i + 1].second = data[i].second;
 				i--;
@@ -39,7 +46,7 @@ public:
 			data = new_data;
 			capacity = new_capacity;
 			int i = size - 1;
-			while (i >= 0 && data[i].second > obj.second) {
+			while (i >= 0 && stringToInt(data[i].first) > stringToInt(obj.first)) {
 				data[i + 1].first = data[i].first;
 				data[i + 1].second = data[i].second;
 				i--;
@@ -70,7 +77,7 @@ public:
 			if (data[middle].first == key) {
 				return data[middle];
 			}
-			else if (data[middle].first < key) {
+			else if (stringToInt(data[middle].first) < stringToInt(key)) {
 				left = middle + 1;
 			}
 			else {
@@ -87,7 +94,7 @@ public:
 			if (data[middle].first == obj.first) {
 				return true;
 			}
-			else if (data[middle].first < obj.first) {
+			else if (stringToInt(data[middle].first) < stringToInt(obj.first)) {
 				left = middle + 1;
 			}
 			else {
@@ -98,9 +105,8 @@ public:
 	}
 	void print() {
 		for (int i = 0; i < size; i++) {
-			std::cout << data[i].first.toString() << " ";
+			std::cout << data[i].first << "      " << data[i].second.toString() << std::endl;
 		}
-		std::cout << std::endl;
 	}
 };
 
