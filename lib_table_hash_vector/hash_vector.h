@@ -61,6 +61,18 @@ public:
 		}
 		throw std::out_of_range("Key not found");
 	}
+
+	void print() {
+		std::cout << "Table Hash Vector Mix OBJ & KEY: " << std::endl;
+		int polynum = 0;
+		for (size_t i = 0; i < size; i++) {
+			auto& vec = data[i];
+			for (auto& obj : vec) {
+				std::cout << "obj" << polynum + 1 << " " << obj.first << std::endl;
+				polynum++;
+			}
+		}
+	}
 };
 
 #endif

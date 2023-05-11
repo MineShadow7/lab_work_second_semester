@@ -60,6 +60,19 @@ public:
         if (cpy.isEmpty() && currentObject.first != key)
             throw std::out_of_range("Key not found");
     }
+    void print() {
+        std::cout << "Table Linear List OBJ & KEY: " << std::endl;
+        int polynum = 0;
+        CList<std::pair<std::string, Type>> cpy;
+        cpy.cpy(data);
+        std::pair<std::string, Type> currentObject;
+        while (!cpy.isEmpty())
+        {
+            currentObject = cpy.pop_back();
+            std::cout << "obj" << polynum + 1 << " " << currentObject.first << std::endl;
+            polynum++;
+        }
+    }
 };
 
 #endif
