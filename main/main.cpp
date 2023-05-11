@@ -155,8 +155,8 @@ int main() {
     //    std::cout << "it's over" << std::endl;
     //}
     CPolynomial polynomial;
-    polynomial.Parse("(2x) + (-2y^2)");
-    CLinearTableArray<std::pair<std::string, CPolynomial>> tree;
+    polynomial.Parse("(2x) + (2y^2)");
+    CLinearTableList<std::pair<std::string, CPolynomial>> tree;
     std::pair<std::string, CPolynomial> temp1{ "a", polynomial };
     std::pair<std::string, CPolynomial> temp2{"b", polynomial };
     std::pair<std::string, CPolynomial> temp3{ "c", polynomial };
