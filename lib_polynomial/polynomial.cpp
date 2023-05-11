@@ -163,7 +163,7 @@ std::string CPolynomial::toString()
         monom = cpylist.pop_front();
         if (!first && monom.getcoefficient() >= 0)
         {
-            oss << " ";
+            oss << "+";
         }
         first = false;
         oss << monom.toString();
