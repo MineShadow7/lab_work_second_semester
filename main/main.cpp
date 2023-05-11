@@ -155,5 +155,26 @@ int main() {
     test.Parse(expression);
     std::cout << test.toString() << std::endl;
     std::cout << test.findResult(2, 3, 4, expression) << std::endl;
+
+
+    //Example of inner workings of Polynomial. Basic HOW-TO-DO-WORK with it.
+    std::string userstring = "(2x^2y) + (3x^2yz) + (4xy^2)";
+    double x, y, z;
+    std::cout << "Hello! Let's calculate Polynomial strings. Format of string: (Monomial expr) +-*/ (Monomial expr) +-*/ ..." << std::endl;
+    std::cout << "Your Polynomial string: " << userstring;
+    CPolynomial usertest;
+    usertest.Parse(userstring);
+    std::cout << std::endl << "This is how the class contains the Monoms of string Polynomial: " << usertest.toString() << std::endl;
+    std::cout << "Now let's calculate the result of said Polynomial string: " << std::endl;
+    std::cout << "Input x: ";
+    std::cin >> x;
+    std::cout << std::endl;
+    std::cout << "Input y: ";
+    std::cin >> y;
+    std::cout << std::endl;
+    std::cout << "Input z: ";
+    std::cin >> z;
+    std::cout << std::endl;
+    std::cout << "The result of " << userstring << " In point " << x << " " << y << " " << z << " " << "is: " << usertest.findResult(x, y, z, userstring);
     return 0;
 }
