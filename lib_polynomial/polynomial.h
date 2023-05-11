@@ -4,7 +4,9 @@
 #define LIB_POLYNOMIAL_POLYNOMIAL_H_
 
 #include "../lib_list/list.h"
-#include "sstream"
+#include <sstream>
+#include <ostream>
+#include <stack>
 
 
 class CMonomial {
@@ -13,7 +15,6 @@ private:
 	int degree[3];
 
 	bool checkequality(CMonomial m_monomial);
-
 protected:
 	double getcoefficient();
 
@@ -21,7 +22,6 @@ public:
 	CMonomial();
 	CMonomial(const CMonomial& monomial);
 	CMonomial(double _coefficient, int* _degree);
-	~CMonomial();
 
 	std::string toString();
 
@@ -43,6 +43,11 @@ public:
 class CPolynomial {
 private:
 	CList<CMonomial> list;
+	int GetPrecedence(char op);
+	bool isOperator(char c);
+	bool isVariable(char c);
+	std::string ToRPN(std::string _string);
+	double countMonom(CMonomial monom, double _x, double _y, double _z);
 public:
 	CPolynomial() { };
 	CPolynomial(const CPolynomial& _polynomial);
@@ -54,7 +59,7 @@ public:
 
 	bool operator==(CPolynomial _polynomial);
 	bool operator!=(CPolynomial _polynomial);
-	double findResult(double _x, double _y, double _z);
+	double findResult(double _x, double _y, double _z, std::string _str);
 	void Parse(std::string _string);
 
 	CPolynomial operator+(CMonomial _monomial);

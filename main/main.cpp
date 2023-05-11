@@ -15,7 +15,7 @@ int main() {
     deg[0] = 1;
     deg[1] = 2;
     deg[2] = 3;
-    double coef = 3;
+    double coef = 3.0;
     CMonomial monom(coef, deg);
     std::cout << monom.toString() << std::endl;
 
@@ -127,10 +127,6 @@ int main() {
         std::cout << "Caught and Exception, code works as intendent." << std::endl;
     }
 
-
-
-
-
     CHashTableMix<CPolynomial> MyHashTable2(20);
 
     // Заполняем таблицу значениями
@@ -154,5 +150,10 @@ int main() {
         std::cout << "Polinom 2 is not in the table" << std::endl;
     }
 
+    CPolynomial test;
+    std::string expression = "(2x^2y) + (3x^2yz) + (4xy^2)";
+    test.Parse(expression);
+    std::cout << test.toString() << std::endl;
+    std::cout << test.findResult(2, 3, 4, expression) << std::endl;
     return 0;
 }
