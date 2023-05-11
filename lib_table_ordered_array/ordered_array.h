@@ -4,18 +4,19 @@
 #include "../lib_i_table/table.h"
 #include "../lib_polynomial/polynomial.h"
 
+template<typename Type>
 class COrderedTableArray{
 private:
-	std::pair<CPolynomial, int>* data;
+	Type* data;
 	int size;
 	int capacity;
 public:
 	COrderedTableArray() {
 		size = 0;
 		capacity = 20;
-		data = new std::pair<CPolynomial, int>[capacity];
+		data = new Type[capacity];
 	}
-	void insert(std::pair<CPolynomial, int> obj) {
+	void insert(Type obj) {
 		if (size < capacity) {
 			int i = size - 1;
 			while (i >= 0 && data[i].second > obj.second) {
@@ -29,7 +30,7 @@ public:
 		}
 		else {
 			int new_capacity = capacity * 2;
-			std::pair<CPolynomial, int>* new_data = new std::pair<CPolynomial, int>[new_capacity];
+			Type* new_data = new Type[new_capacity];
 			for (int i = 0; i < size; i++) {
 				new_data[i].first = data[i].first;
 				new_data[i].second = data[i].second;
@@ -48,7 +49,7 @@ public:
 			size++;
 		}
 	}
-	void remove(std::pair<CPolynomial, int> obj) {
+	void remove(Type obj) {
 		int i = 0;
 		while (i < size && data[i].second != obj.second) {
 			i++;
@@ -61,15 +62,15 @@ public:
 			size--;
 		}
 	}
-	std::pair<CPolynomial, int> find(int key) {
+	Type find(std::string key) {
 		int left = 0;
 		int right = size - 1;
 		while (left <= right) {
 			int middle = (left + right) / 2;
-			if (data[middle].second == key) {
+			if (data[middle].first == key) {
 				return data[middle];
 			}
-			else if (data[middle].second < key) {
+			else if (data[middle].first < key) {
 				left = middle + 1;
 			}
 			else {
@@ -78,15 +79,15 @@ public:
 		}
 		return data[key];
 	}
-	bool contains(std::pair<CPolynomial, int> obj) {
+	bool contains(Type obj) {
 		int left = 0;
 		int right = size - 1;
 		while (left <= right) {
 			int middle = (left + right) / 2;
-			if (data[middle].second == obj.second) {
+			if (data[middle].first == obj.first) {
 				return true;
 			}
-			else if (data[middle].second < obj.second) {
+			else if (data[middle].first < obj.first) {
 				left = middle + 1;
 			}
 			else {

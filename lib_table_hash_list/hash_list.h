@@ -5,52 +5,56 @@
 #include "../lib_list/list.h"
 #include "../lib_polynomial/polynomial.h"
 
+template<typename Type>
 class CHashTableList {
 private:
-    CList<std::pair<CPolynomial, int>> arr[SIZE];
+    CList<Type> arr[SIZE];
 
-    int hashFunction(std::pair<CPolynomial, int> _data) {
-        int key = 0;
-        std::string temp = _data.first.toString();
-        for (int i = 0; i < temp.size(); i++) {
-            key += temp[i];
-        }
-
-        key = key % SIZE;
-
-        key = abs(key);
-
-        return key;
+    size_t hashFunction(const Type& obj) const {
+        return std::hash<std::string>{}(obj.first) % SIZE;
     }
+
 public:
-    void insert(std::pair<CPolynomial, int> _data) {
+    void insert(Type obj) {
 
-        int key = hashFunction(_data);
+        int key = hashFunction(obj);
 
-        arr[key].push_back(_data);
+        arr[key].push_back(obj);
     }
-    bool contains(std::pair<CPolynomial, int> _data) {
+    bool contains(Type obj) {
 
-        int key = hashFunction(_data);
+        int key = hashFunction(obj);
 
-        CList<std::pair<CPolynomial, int>>* arrTemp = new CList<std::pair<CPolynomial, int>>();
+        CList<Type>* arrTemp = new CList<Type>();
         arrTemp->cpy(arr[key]);
         while (!arrTemp->isEmpty()) {
-            std::pair<CPolynomial, int> tempData;
+            Type tempData;
             tempData = arrTemp->pop_back();
-            if (tempData == _data) {
+            if (tempData == obj) {
                 return true;
             }
         }
         return false;
     }
-    void remove(std::pair<CPolynomial, int> _data) {
-        int key = hashFunction(_data);
-        int index = 0;
-        CList<std::pair<CPolynomial, int>>* arrTemp = new CList<std::pair<CPolynomial, int>>();
+    Type find(std::string key) {
+        CList<Type>* arrTemp = new CList<Type>();
         arrTemp->cpy(arr[key]);
         while (!arrTemp->isEmpty()) {
-            if (arrTemp->pop_back() == _data) {
+            Type tempData;
+            tempData = arrTemp->pop_back();
+            if (tempData == obj) {
+                return tempData;
+            }
+        }
+        throw std::out_of_range("Key not found");
+    }
+    void remove(Type obj) {
+        int key = hashFunction(obj);
+        int index = 0;
+        CList<Type>* arrTemp = new CList<Type>();
+        arrTemp->cpy(arr[key]);
+        while (!arrTemp->isEmpty()) {
+            if (arrTemp->pop_back() == obj) {
                 break;
             }
             index++;
