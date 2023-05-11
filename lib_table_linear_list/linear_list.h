@@ -7,60 +7,59 @@
 
 template<typename Type>
 class CLinearTableList : public ITable<Type> {
- private:
-	CList<Type> data;
- public:
-	 CLinearTableList() {}
-	void insert(Type obj) override
+private:
+    CList<std::pair<std::string, Type>> data;
+public:
+    CLinearTableList() {};
+
+    void insert(Type obj) override
     {
-		data.push_back(obj);
-	}
-	void remove(Type obj) override
+        data.push_back(std::make_pair(obj.toString(), obj));
+    }
+    void remove(Type obj) override
     {
-        CList<Type> cpy;
+        CList<std::pair<std::string, Type>> cpy;
         cpy.cpy(data);
         Type currentObject;
         int index = 0;
         while (!cpy.isEmpty())
         {
-            currentObject = cpy.pop_back();
+            currentObject = cpy.pop_back().second;
             if (currentObject == obj)
                 data.remove(index);
             index++;
         }
-	}
+    }
     bool contains(const Type obj) override
     {
-        CList<Type> cpy;
+        CList<std::pair<std::string, Type>> cpy;
         cpy.cpy(data);
-        Type currentObject;
+        std::pair<std::string, Type> currentObject;
         while (!cpy.isEmpty())
         {
             currentObject = cpy.pop_back();
-            if (currentObject == obj)
+            if (currentObject.second == obj)
                 return true;
         }
         return false;
-	}
-	Type find(std::string key) override
+    }
+    Type find(std::string key) override
     {
-        CList<Type> cpy;
+        CList<std::pair<std::string, Type>> cpy;
         cpy.cpy(data);
-        Type currentObject;
+        std::pair<std::string, Type> currentObject;
         while (!cpy.isEmpty())
         {
-            
-            // currentObject.first, ������ ��� �� ������������� ������ std::pair<string KEY, VALUE>.
+            // currentObject.first, потому что мы предполагаемо храним std::pair<string KEY, POLINOM>.
             if (cpy.pop_back().first == key)
             {
                 currentObject = cpy.pop_back();
-                return currentObject;
+                return currentObject.second;
             }
         }
-        if(currentObject.second == NULL)
+        if (cpy.isEmpty() && currentObject.first != key)
             throw std::out_of_range("Key not found");
-        
-	}
+    }
 };
 
 #endif

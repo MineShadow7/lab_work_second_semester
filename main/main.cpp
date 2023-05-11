@@ -12,8 +12,6 @@
 #include "../lib_table_linear_array/linear_array.h"
 #include "../lib_table_ordered_array/ordered_array.h"
 
-
-
 int main() {
     
     //// Testing Monoms.
@@ -64,10 +62,10 @@ int main() {
     //
 
     //
-    //// Создаем объект таблицы
+    //// Г‘Г®Г§Г¤Г ГҐГ¬ Г®ГЎГєГҐГЄГІ ГІГ ГЎГ«ГЁГ¶Г»
     //CLinearTableList<std::pair<std::string, int>> table;
 
-    //// Вставляем элементы
+    //// Г‚Г±ГІГ ГўГ«ГїГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ»
     //table.insert(std::pair<std::string, int>("key1", 12));
     //table.insert(std::pair<std::string, int>("key2", 13));
     //table.insert(std::pair<std::string, int>("key3", 14));
@@ -78,11 +76,11 @@ int main() {
     //}else
     //    std::cout << "Couldn't find object 1..." << std::endl;
 
-    //// Удаляем элемент
+    //// Г“Г¤Г Г«ГїГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІ
     //std::pair<std::string, int> objtoremove("key2", 13);
     //table.remove(objtoremove);
 
-    //// Ищем элемент по ключу
+    //// Г€Г№ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІ ГЇГ® ГЄГ«ГѕГ·Гі
     //try {
     //    const std::pair<std::string, int> found = table.find("key2");
     //    std::cout << found.first << " " << found.second << std::endl;
@@ -118,7 +116,7 @@ int main() {
     //
     //CHashTableMix<std::pair<std::string, int>> MyHashTable2(20);
 
-    //// Добавляем несколько элементов
+    //// Г„Г®ГЎГ ГўГ«ГїГҐГ¬ Г­ГҐГ±ГЄГ®Г«ГјГЄГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ®Гў
     //std::pair<std::string, int> obj4("apple", 5);
     //std::pair<std::string, int> obj5("banana", 3);
     //std::pair<std::string, int> obj6("orange", 7);
@@ -126,14 +124,14 @@ int main() {
     //MyHashTable2.insert(obj5);
     //MyHashTable2.insert(obj6);
 
-    //// Получаем значение по ключу
+    //// ГЏГ®Г«ГіГ·Г ГҐГ¬ Г§Г­Г Г·ГҐГ­ГЁГҐ ГЇГ® ГЄГ«ГѕГ·Гі
     //std::pair<std::string, int> value = MyHashTable2.find("banana");
     //std::cout << "Value of banana is " << value.second << std::endl;
 
-    //// Удаляем элемент по ключу
+    //// Г“Г¤Г Г«ГїГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІ ГЇГ® ГЄГ«ГѕГ·Гі
     //MyHashTable2.remove(std::make_pair(std::string("orange"), 0));
 
-    //// Проверяем, есть ли элемент в таблице
+    //// ГЏГ°Г®ГўГҐГ°ГїГҐГ¬, ГҐГ±ГІГј Г«ГЁ ГЅГ«ГҐГ¬ГҐГ­ГІ Гў ГІГ ГЎГ«ГЁГ¶ГҐ
     //if (MyHashTable2.contains(std::make_pair(std::string("orange"), 0))) {
     //    std::cout << "Orange is in the table" << std::endl;
     //}
@@ -171,6 +169,32 @@ int main() {
     else {
         std::cout << "it's over" << std::endl;
     }
-    
+
+    CPolynomial test;
+    std::string expression = "(2x^2y) + (3x^2yz) + (4xy^2)";
+    test.Parse(expression);
+    std::cout << test.toString() << std::endl;
+    std::cout << test.findResult(2, 3, 4, expression) << std::endl;
+
+
+    //Example of inner workings of Polynomial. Basic HOW-TO-DO-WORK with it.
+    std::string userstring = "(2x^2y) + (3x^2yz) + (4xy^2)";
+    double x, y, z;
+    std::cout << "Hello! Let's calculate Polynomial strings. Format of string: (Monomial expr) +-*/ (Monomial expr) +-*/ ..." << std::endl;
+    std::cout << "Your Polynomial string: " << userstring;
+    CPolynomial usertest;
+    usertest.Parse(userstring);
+    std::cout << std::endl << "This is how the class contains the Monoms of string Polynomial: " << usertest.toString() << std::endl;
+    std::cout << "Now let's calculate the result of said Polynomial string: " << std::endl;
+    std::cout << "Input x: ";
+    std::cin >> x;
+    std::cout << std::endl;
+    std::cout << "Input y: ";
+    std::cin >> y;
+    std::cout << std::endl;
+    std::cout << "Input z: ";
+    std::cin >> z;
+    std::cout << std::endl;
+    std::cout << "The result of " << userstring << " In point " << x << " " << y << " " << z << " " << "is: " << usertest.findResult(x, y, z, userstring);
     return 0;
 }
