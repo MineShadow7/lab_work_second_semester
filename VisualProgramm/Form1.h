@@ -34,6 +34,8 @@ namespace VisualProgramm {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::SplitContainer^ splitContainer1;
+	protected:
 
 	private:
 		/// <summary>
@@ -48,11 +50,32 @@ namespace VisualProgramm {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"Form1";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer1))->BeginInit();
+			this->splitContainer1->SuspendLayout();
+			this->SuspendLayout();
+			// 
+			// splitContainer1
+			// 
+			this->splitContainer1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->splitContainer1->Location = System::Drawing::Point(0, 0);
+			this->splitContainer1->Name = L"splitContainer1";
+			this->splitContainer1->Size = System::Drawing::Size(944, 464);
+			this->splitContainer1->SplitterDistance = 314;
+			this->splitContainer1->TabIndex = 0;
+			// 
+			// Form1
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(944, 464);
+			this->Controls->Add(this->splitContainer1);
+			this->Name = L"Form1";
+			this->Text = L"Form1";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer1))->EndInit();
+			this->splitContainer1->ResumeLayout(false);
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
 	};

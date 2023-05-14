@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include "../lib_i_table/table.h"
+#include "../lib_polynomial/polynomial.h"
 
 template<typename Type>
 class CHashTableMix : public ITable<Type> {
@@ -10,8 +11,8 @@ private:
 	size_t size;
 	std::vector<Type>* data;
 
-	size_t hashFunction(const std::string& obj) const {
-		return std::hash<std::string>{}(obj) % size;
+	size_t hashFunction(const Type& obj) const {
+		return std::hash<std::string>{}(obj.first) % size;
 	}
 public:
 	explicit CHashTableMix(const size_t _size)
@@ -26,23 +27,25 @@ public:
 	}
 
 	void insert(Type obj) override {
-		size_t index = hashFunction(obj.second.toString());
+		size_t index = hashFunction(obj);
 		Type newpair = obj;
 		data[index].push_back(newpair);
 	}
 
 	void remove(Type obj) override {
-		size_t index = hashFunction(obj.second.toString());
-		std::vector<Type> vec = data[index];
-		if (vec.data()->second == obj.second)
-		{
-			data->erase(data->begin() + index);
+		size_t index = hashFunction(obj);
+		std::vector<Type>& vec = data[index];
+		for (auto it = vec.begin(); it != vec.end(); ++it) {
+			if (it->second == obj.second) {
+				vec.erase(it);
+				break;
+			}
 		}
 	}
 
 	bool contains(Type obj) override {
-		size_t index = hashFunction(obj.second.toString());
-		std::vector<Type> vec = data[index];
+		size_t index = hashFunction(obj);
+		std::vector<Type>& vec = data[index];
 		if (vec.data()->second == obj.second)
 		{
 			return true;
