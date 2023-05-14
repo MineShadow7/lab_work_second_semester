@@ -1,5 +1,5 @@
 ﻿  Form1.cpp
-  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
-  Создание кода...
+C:\Users\shad-\Documents\Programming\lab_work_second_semester\lib_polynomial\polynomial.cpp(561,27): warning C4552: "*": результат выражения не используется
+C:\Users\shad-\Documents\Programming\lab_work_second_semester\lib_list\list.h(156): warning C4715: CList<CMonomial>::pop_front: значение возвращается не при всех путях выполнения
   Form1.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   VisualProgramm.vcxproj -> C:\Users\shad-\Documents\Programming\lab_work_second_semester\build\x64\Debug\VisualProgramm.exe
