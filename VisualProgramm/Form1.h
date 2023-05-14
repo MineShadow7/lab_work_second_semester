@@ -48,6 +48,7 @@ namespace VisualProgramm {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ textBox4;
+	private: System::Windows::Forms::ListBox^ listBox1;
 	protected:
 
 	private:
@@ -64,17 +65,19 @@ namespace VisualProgramm {
 		void InitializeComponent(void)
 		{
 			this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer1))->BeginInit();
 			this->splitContainer1->Panel1->SuspendLayout();
+			this->splitContainer1->Panel2->SuspendLayout();
 			this->splitContainer1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -95,9 +98,66 @@ namespace VisualProgramm {
 			this->splitContainer1->Panel1->Controls->Add(this->textBox3);
 			this->splitContainer1->Panel1->Controls->Add(this->textBox2);
 			this->splitContainer1->Panel1->Controls->Add(this->textBox1);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this->splitContainer1->Panel2->Controls->Add(this->listBox1);
 			this->splitContainer1->Size = System::Drawing::Size(944, 464);
 			this->splitContainer1->SplitterDistance = 314;
 			this->splitContainer1->TabIndex = 0;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(49, 171);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(172, 23);
+			this->button1->TabIndex = 8;
+			this->button1->Text = L"Создать Моном";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(179, 104);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(28, 13);
+			this->label4->TabIndex = 7;
+			this->label4->Text = L"ст.Z";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(134, 104);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(28, 13);
+			this->label3->TabIndex = 6;
+			this->label3->Text = L"ст.Y";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(90, 104);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(28, 13);
+			this->label2->TabIndex = 5;
+			this->label2->Text = L"ст.X";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(49, 104);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(37, 13);
+			this->label1->TabIndex = 4;
+			this->label1->Text = L"Коэф.";
+			// 
+			// textBox4
+			// 
+			this->textBox4->Location = System::Drawing::Point(49, 123);
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size(35, 20);
+			this->textBox4->TabIndex = 3;
 			// 
 			// textBox3
 			// 
@@ -120,58 +180,13 @@ namespace VisualProgramm {
 			this->textBox1->Size = System::Drawing::Size(38, 20);
 			this->textBox1->TabIndex = 0;
 			// 
-			// textBox4
+			// listBox1
 			// 
-			this->textBox4->Location = System::Drawing::Point(49, 123);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(35, 20);
-			this->textBox4->TabIndex = 3;
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(49, 104);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(37, 13);
-			this->label1->TabIndex = 4;
-			this->label1->Text = L"Коэф.";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(90, 104);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(28, 13);
-			this->label2->TabIndex = 5;
-			this->label2->Text = L"ст.X";
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(134, 104);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(28, 13);
-			this->label3->TabIndex = 6;
-			this->label3->Text = L"ст.Y";
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(179, 104);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(28, 13);
-			this->label4->TabIndex = 7;
-			this->label4->Text = L"ст.Z";
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(49, 171);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(172, 23);
-			this->button1->TabIndex = 8;
-			this->button1->Text = L"Создать Моном";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
+			this->listBox1->FormattingEnabled = true;
+			this->listBox1->Location = System::Drawing::Point(19, 13);
+			this->listBox1->Name = L"listBox1";
+			this->listBox1->Size = System::Drawing::Size(103, 433);
+			this->listBox1->TabIndex = 0;
 			// 
 			// Form1
 			// 
@@ -183,6 +198,7 @@ namespace VisualProgramm {
 			this->Text = L"Form1";
 			this->splitContainer1->Panel1->ResumeLayout(false);
 			this->splitContainer1->Panel1->PerformLayout();
+			this->splitContainer1->Panel2->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->splitContainer1))->EndInit();
 			this->splitContainer1->ResumeLayout(false);
 			this->ResumeLayout(false);
@@ -210,7 +226,10 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	powstr3 = context.marshal_as<std::string>(txtboxstr);
 	deg[2] = stoi(powstr3);
 	CMonomial monom(coef, deg);
-
+	CList<CMonomial> list;
+	list.push_back(monom);
+	CPolynomial poly(list);
 }
+
 };
 }
