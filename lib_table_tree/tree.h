@@ -57,6 +57,9 @@ private:
         return res;
     }
 
+
+
+
     int stringToInt(std::string _str) {
         int tempInt = 0;
         for (int i = 0; i < _str.size(); i++) {
@@ -229,7 +232,7 @@ public:
         CNodeTree<Type>* node = root;
         while (node != nullptr) {
             if (stringToInt(key) == stringToInt(node->data.first)) {
-                return &(node->data.first);
+                return (node->data);
             }
             else if (stringToInt(key) < stringToInt(node->data.first)) {
                 node = node->left;
@@ -238,7 +241,9 @@ public:
                 node = node->right;
             }
         }
-        return nullptr;
+        CPolynomial poly();
+        std::pair<std::string, CPolynomial> nothing;
+        return nothing;
     }
 
     void print() {
@@ -247,6 +252,10 @@ public:
     
     std::string printstring() {
         return printstring(root);
+    }
+
+    int getsize() {
+        return size + 1;
     }
 };
 

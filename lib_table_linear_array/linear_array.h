@@ -75,6 +75,10 @@ class CLinearTableArray {
 		}
 		return res;
 	}
+
+	int getsize() {
+		return size;
+	}
 };
 
 #endif

@@ -138,6 +138,9 @@ int main() {
     //else {
     //    std::cout << "Orange is not in the table" << std::endl;
     //}
+
+
+
     CPolynomial polynomial;
     polynomial.Parse("(2x) + (2y^2)");
     CTreeTable<std::pair<std::string, CPolynomial>> tree;
@@ -155,8 +158,8 @@ int main() {
     else {
         std::cout << "it's over" << std::endl;
     }
-
     std::cout << tree.printstring();
+    std::cout << tree.getsize();
 
     COrderedTableArray<std::pair<std::string, CPolynomial>> orderArray;
     orderArray.insert(temp1);
@@ -171,7 +174,7 @@ int main() {
     }
 
     std::cout << orderArray.printstring();
-
+    std::cout << orderArray.getsize();
 
     CLinearTableList<std::pair<std::string, CPolynomial>> linearList;
     linearList.insert(temp1);
@@ -186,7 +189,7 @@ int main() {
     }
 
     std:: cout << linearList.printstring();
-
+    std::cout << linearList.getsize();
 
     CLinearTableArray<std::pair<std::string, CPolynomial>> linearArray;
     linearArray.insert(temp1);
@@ -201,7 +204,7 @@ int main() {
     }
 
     std::cout << linearArray.printstring();
-
+    std::cout << linearArray.getsize();
 
     CHashTableMix<std::pair<std::string, CPolynomial>> mixvector(25);
     mixvector.insert(temp1);
@@ -216,7 +219,7 @@ int main() {
     }
 
     std::cout << mixvector.printstring();
-
+    std::cout << mixvector.getsize();
 
     CHashTableList<std::pair<std::string, CPolynomial>> mixlist;
     mixlist.insert(temp1);
@@ -231,6 +234,29 @@ int main() {
     }
 
     std::cout << mixlist.printstring();
+    std::cout << mixlist.getsize();
+
+
+    //БУДЕТ ИСПОЛЬЗОВАТЬСЯ В ПАРСЕРЕ ТАБЛИЦ.
+    const int size = mixlist.getsize();
+    std::string* arr = new std::string[size];
+    std::string buff;
+    std::string toParse = mixlist.printstring();
+    for (int i = 0; i < size; i++) {
+        for(int j = 0; j < toParse.size(); j++)
+            if (toParse[j] != '\n') {
+                buff += toParse[j];
+            }
+            else {
+                break;
+            }
+        arr[i] = buff;
+        buff.clear();
+    }
+
+    for (int i = 0; i < size; i++) {
+        std::cout << arr[i] << std::endl;
+    }
 
     //CPolynomial test;
     //std::string expression = "(-2x^2y) - (3x^2yz)";

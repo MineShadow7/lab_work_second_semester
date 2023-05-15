@@ -90,6 +90,17 @@ public:
 		}
 		return res;
 	}
+
+	int getsize() {
+		int ressize = 0;
+		for (size_t i = 0; i < size; i++) {
+			auto& vec = data[i];
+			for (auto& obj : vec) {
+				ressize++;
+			}
+		}
+		return ressize;
+	}
 };
 
 #endif

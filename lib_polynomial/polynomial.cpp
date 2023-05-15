@@ -304,6 +304,8 @@ void CPolynomial::Parse(std::string _string)
                     break;
                 }
                 m.degree[index] = m.degree[index] + 1;
+                if (m.coefficient == 0)
+                    m.coefficient = 1;
                 ss >> c;
             }
             ss.putback(c);

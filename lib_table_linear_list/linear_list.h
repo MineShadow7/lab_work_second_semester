@@ -89,6 +89,10 @@ public:
         }
         return res;
     }
+
+    int getsize() {
+        return data.size;
+    }
 };
 
 #endif

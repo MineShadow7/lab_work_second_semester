@@ -116,6 +116,10 @@ public:
 		}
 		return res;
 	}
+
+	int getsize() {
+		return size;
+	}
 };
 
 #endif
