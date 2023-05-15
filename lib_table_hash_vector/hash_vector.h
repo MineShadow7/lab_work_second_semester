@@ -76,6 +76,20 @@ public:
 			}
 		}
 	}
+
+	std::string printstring() {
+		std::string res;
+		for (size_t i = 0; i < size; i++) {
+			auto& vec = data[i];
+			for (auto& obj : vec) {
+				res += obj.first;
+				res += "      ";
+				res += obj.second.toString();
+				res += "\n";
+			}
+		}
+		return res;
+	}
 };
 
 #endif

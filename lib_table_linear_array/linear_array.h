@@ -67,6 +67,14 @@ class CLinearTableArray {
 			std::cout << data[i].first << "      " << data[i].second.toString() << std::endl;
 		}
 	}
+
+	std::string printstring() {
+		std::string res;
+		for (int i = 0; i < size; i++) {
+			res += data[i].first + "      " + data[i].second.toString() + "\n";
+		}
+		return res;
+	}
 };
 
 #endif

@@ -73,6 +73,21 @@ public:
             }
         }
     }
+
+    std::string printstring() {
+        std::string res;
+        for (int i = 0; i < SIZE; i++) {
+            CList<Type>* arrTemp = new CList<Type>();
+            arrTemp->cpy(arr[i]);
+
+            while (!arrTemp->isEmpty()) {
+                Type tempData;
+                tempData = arrTemp->pop_back();
+                res += tempData.first + "      " + tempData.second.toString() + "\n";
+            }
+        }
+        return res;
+    }
 };
 
 #endif

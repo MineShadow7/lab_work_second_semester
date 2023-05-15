@@ -46,6 +46,17 @@ private:
         print(node->right);
     }
 
+    std::string printstring(CNodeTree<Type>* node) {
+        if (node == nullptr) {
+            return "";
+        }
+        std::string res;
+        res += printstring(node->left);
+        res += node->data.first + "      " + node->data.second.toString() + "\n";
+        res += printstring(node->right);
+        return res;
+    }
+
     int stringToInt(std::string _str) {
         int tempInt = 0;
         for (int i = 0; i < _str.size(); i++) {
@@ -232,6 +243,10 @@ public:
 
     void print() {
         print(root);
+    }
+    
+    std::string printstring() {
+        return printstring(root);
     }
 };
 
