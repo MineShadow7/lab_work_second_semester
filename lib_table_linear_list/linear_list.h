@@ -73,6 +73,26 @@ public:
             polynum++;
         }
     }
+
+    std::string printstring() {
+        std::string res = "";
+        CList<Type> cpy;
+        cpy.cpy(data);
+        Type currentObject;
+        while (!cpy.isEmpty())
+        {
+            currentObject = cpy.pop_back();
+            res += currentObject.first;
+            res += "      ";
+            res += currentObject.second.toString();
+            res += "\n";
+        }
+        return res;
+    }
+
+    int getsize() {
+        return data.size;
+    }
 };
 
 #endif

@@ -13,7 +13,7 @@
 #include "../lib_table_ordered_array/ordered_array.h"
 
 int main() {
-    
+
     //// Testing Monoms.
     //int* deg = new int(3);
     //deg[0] = 1;
@@ -61,8 +61,8 @@ int main() {
     //std::cout << polynom.toString();
     //
 
-    //
-    //// Ñîçäàåì îáúåêò òàáëèöû
+
+    // Ñîçäàåì îáúåêò òàáëèöû
     //CLinearTableList<std::pair<std::string, int>> table;
 
     //// Âñòàâëÿåì ýëåìåíòû
@@ -139,26 +139,13 @@ int main() {
     //    std::cout << "Orange is not in the table" << std::endl;
     //}
 
-    //CTreeTable<std::pair<std::string, int>> tree;
-    //std::pair<std::string, int> temp1{ "a", 1 };
-    //std::pair<std::string, int> temp2{"b", 2 };
-    //std::pair<std::string, int> temp3{ "c", 2 };
-    //std::pair<std::string, int> temp4{ "d", 3 };
-    //tree.insert(temp1);
-    //tree.insert(temp2);
-    //tree.insert(temp4);
-    //tree.insert(temp3);
-    //if (tree.contain(temp3)) {
-    //    std::cout << "we are back" << std::endl;
-    //}
-    //else {
-    //    std::cout << "it's over" << std::endl;
-    //}
+
+
     CPolynomial polynomial;
     polynomial.Parse("(2x) + (2y^2)");
-    CLinearTableList<std::pair<std::string, CPolynomial>> tree;
+    CTreeTable<std::pair<std::string, CPolynomial>> tree;
     std::pair<std::string, CPolynomial> temp1{ "a", polynomial };
-    std::pair<std::string, CPolynomial> temp2{"b", polynomial };
+    std::pair<std::string, CPolynomial> temp2{ "b", polynomial };
     std::pair<std::string, CPolynomial> temp3{ "c", polynomial };
     std::pair<std::string, CPolynomial> temp4{ "d", polynomial };
     tree.insert(temp1);
@@ -171,9 +158,131 @@ int main() {
     else {
         std::cout << "it's over" << std::endl;
     }
+    std::cout << tree.printstring();
+    std::cout << tree.getsize();
 
-    tree.print();
+    COrderedTableArray<std::pair<std::string, CPolynomial>> orderArray;
+    orderArray.insert(temp1);
+    orderArray.insert(temp2);
+    orderArray.insert(temp4);
+    orderArray.insert(temp3);
+    if (orderArray.contains(temp3)) {
+        std::cout << "we are back" << std::endl;
+    }
+    else {
+        std::cout << "it's over" << std::endl;
+    }
+
+    std::cout << orderArray.printstring();
+    std::cout << orderArray.getsize();
+
+    CLinearTableList<std::pair<std::string, CPolynomial>> linearList;
+    linearList.insert(temp1);
+    linearList.insert(temp2);
+    linearList.insert(temp4);
+    linearList.insert(temp3);
+    if (linearList.contains(temp3)) {
+        std::cout << "we are back" << std::endl;
+    }
+    else {
+        std::cout << "it's over" << std::endl;
+    }
+
+    std:: cout << linearList.printstring();
+    std::cout << linearList.getsize();
+
+    CLinearTableArray<std::pair<std::string, CPolynomial>> linearArray;
+    linearArray.insert(temp1);
+    linearArray.insert(temp2);
+    linearArray.insert(temp4);
+    linearArray.insert(temp3);
+    if (linearArray.contains(temp3)) {
+        std::cout << "we are back" << std::endl;
+    }
+    else {
+        std::cout << "it's over" << std::endl;
+    }
+
+    std::cout << linearArray.printstring();
+    std::cout << linearArray.getsize();
+
+    CHashTableMix<std::pair<std::string, CPolynomial>> mixvector(25);
+    mixvector.insert(temp1);
+    mixvector.insert(temp2);
+    mixvector.insert(temp4);
+    mixvector.insert(temp3);
+    if (mixvector.contains(temp3)) {
+        std::cout << "we are back" << std::endl;
+    }
+    else {
+        std::cout << "it's over" << std::endl;
+    }
+
+    std::cout << mixvector.printstring();
+    std::cout << mixvector.getsize();
+
+    CHashTableList<std::pair<std::string, CPolynomial>> mixlist;
+    mixlist.insert(temp1);
+    mixlist.insert(temp2);
+    mixlist.insert(temp4);
+    mixlist.insert(temp3);
+    if (mixlist.contains(temp3)) {
+        std::cout << "we are back" << std::endl;
+    }
+    else {
+        std::cout << "it's over" << std::endl;
+    }
+
+    std::cout << mixlist.printstring();
+    std::cout << mixlist.getsize();
 
 
+    //БУДЕТ ИСПОЛЬЗОВАТЬСЯ В ПАРСЕРЕ ТАБЛИЦ.
+    const int size = mixlist.getsize();
+    std::string* arr = new std::string[size];
+    std::string buff;
+    std::string toParse = mixlist.printstring();
+    for (int i = 0; i < size; i++) {
+        for(int j = 0; j < toParse.size(); j++)
+            if (toParse[j] != '\n') {
+                buff += toParse[j];
+            }
+            else {
+                break;
+            }
+        arr[i] = buff;
+        buff.clear();
+    }
+
+    for (int i = 0; i < size; i++) {
+        std::cout << arr[i] << std::endl;
+    }
+
+    //CPolynomial test;
+    //std::string expression = "(-2x^2y) - (3x^2yz)";
+    //test.Parse(expression);
+    //std::cout << test.toString() << std::endl;
+    //std::cout << test.findResult(2, 3, 4, expression) << std::endl;
+
+
+    ////Example of inner workings of Polynomial. Basic HOW-TO-DO-WORK with it.
+    //std::string userstring = "(2x^2y) + (3x^2yz) + (4xy^2)";
+    //double x, y, z;
+    //std::cout << "Hello! Let's calculate Polynomial strings. Format of string: (Monomial expr) +-*/ (Monomial expr) +-*/ ..." << std::endl;
+    //std::cout << "Your Polynomial string: " << userstring;
+    //CPolynomial usertest;
+    //usertest.Parse(userstring);
+    //std::cout << std::endl << "This is how the class contains the Monoms of string Polynomial: " << usertest.toString() << std::endl;
+    //std::cout << "Now let's calculate the result of said Polynomial string: " << std::endl;
+    //std::cout << "Input x: ";
+    //std::cin >> x;
+    //std::cout << std::endl;
+    //std::cout << "Input y: ";
+    //std::cin >> y;
+    //std::cout << std::endl;
+    //std::cout << "Input z: ";
+    //std::cin >> z;
+    //std::cout << std::endl;
+    //std::cout << "The result of " << userstring << " In point " << x << " " << y << " " << z << " " << "is: " << usertest.findResult(x, y, z, userstring);
     return 0;
 }

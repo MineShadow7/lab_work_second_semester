@@ -230,10 +230,16 @@ double CPolynomial::findResult(double _x, double _y, double _z, std::string _str
         switch (op)
         {
         case '+':
-            result += countMonom(monom2, _x, _y, _z);
+            if (monom2.coefficient >= 0)
+                result += countMonom(monom2, _x, _y, _z);
+            else
+                result -= countMonom(monom2, _x, _y, _z);
             break;
         case '-':
-            result -= countMonom(monom2, _x, _y, _z);
+            if (monom2.coefficient >= 0)
+                result -= countMonom(monom2, _x, _y, _z);
+            else
+                result += countMonom(monom2, _x, _y, _z);
             break;
         case '*':
             result *= countMonom(monom2, _x, _y, _z);
@@ -254,6 +260,7 @@ void CPolynomial::Parse(std::string _string)
     CMonomial m;
     char c;
     char prevc;
+    bool negativeCoefficient = false;
     while (ss >> c) {
         if (c == '(') {
             st.push(c);
@@ -265,11 +272,19 @@ void CPolynomial::Parse(std::string _string)
                 m = CMonomial();
             }
         }
+        else if (c == '-') {
+            negativeCoefficient = true;
+        }
         else if (isdigit(c)) {
             ss.putback(c);
             double coefficient;
             ss >> coefficient;
-            m.coefficient = coefficient;
+            if (negativeCoefficient) {
+                m.coefficient = -coefficient;
+                negativeCoefficient = false;
+            }
+            else
+                m.coefficient = coefficient;
         }
         else if (isalpha(c)) {
             int index = 0;
@@ -289,6 +304,8 @@ void CPolynomial::Parse(std::string _string)
                     break;
                 }
                 m.degree[index] = m.degree[index] + 1;
+                if (m.coefficient == 0)
+                    m.coefficient = 1;
                 ss >> c;
             }
             ss.putback(c);
