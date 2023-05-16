@@ -58,7 +58,7 @@ public:
 	}
 	void remove(Type obj) {
 		int i = 0;
-		while (i < size && data[i].second != obj.second) {
+		while (i < size && data[i].first != obj.first) {
 			i++;
 		}
 		if (i < size) {
@@ -84,7 +84,7 @@ public:
 				right = middle - 1;
 			}
 		}
-		return data[key];
+		return data[stringToInt(key)];
 	}
 	bool contains(Type obj) {
 		int left = 0;

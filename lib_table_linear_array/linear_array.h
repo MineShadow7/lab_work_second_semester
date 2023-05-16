@@ -39,12 +39,16 @@ class CLinearTableArray {
 	}
 	 void remove(Type obj) {
 		 for (int i = 0; i < size; i++) {
-			 if (data[i].second == obj.second) {
+			 if (data[i].first == obj.first) {
 				 for (int j = i; j < size - 1; j++) {
 					 data[j].first = data[j + 1].first;
 					 data[j].second = data[j + 1].second;
 				 }
 				 size--;
+				 if (size == 0) {
+					 delete[] data;
+					 data = new Type[capacity];
+				 }
 				 break;
 			 }
 		 }

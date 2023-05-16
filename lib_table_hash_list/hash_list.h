@@ -37,12 +37,14 @@ public:
     }
     Type find(std::string key) {
         CList<Type>* arrTemp = new CList<Type>();
-        arrTemp->cpy(arr[key]);
-        while (!arrTemp->isEmpty()) {
-            Type tempData;
-            tempData = arrTemp->pop_back();
-            if (tempData == obj) {
-                return tempData;
+        for (int i = 0; i < SIZE; i++) {
+            arrTemp->cpy(arr[i]);
+            while (!arrTemp->isEmpty()) {
+                Type tempData;
+                tempData = arrTemp->pop_back();
+                if (tempData.first == key) {
+                    return tempData;
+                }
             }
         }
         throw std::out_of_range("Key not found");
@@ -53,7 +55,7 @@ public:
         CList<Type>* arrTemp = new CList<Type>();
         arrTemp->cpy(arr[key]);
         while (!arrTemp->isEmpty()) {
-            if (arrTemp->pop_back().second == obj.second) {
+            if (arrTemp->pop_back().first == obj.first) {
                 break;
             }
             index++;

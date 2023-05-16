@@ -1,0 +1,4 @@
+C:\Users\dimos\lab_work_second_semester\VisualProgramm\x64\Debug\VisualProgramm.vcxproj.AssemblyReference.cache
+C:\Users\dimos\lab_work_second_semester\VisualProgramm\x64\Debug\VisualProgramm.vcxproj.SuggestedBindingRedirects.cache
+C:\Users\dimos\lab_work_second_semester\VisualProgramm\x64\Debug\VisualProgramm.Form1.resources
+C:\Users\dimos\lab_work_second_semester\VisualProgramm\x64\Debug\VisualProgramm.vcxproj.GenerateResource.cache
