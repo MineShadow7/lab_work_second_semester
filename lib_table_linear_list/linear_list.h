@@ -25,7 +25,7 @@ public:
         while (!cpy.isEmpty())
         {
             currentObject = cpy.pop_back();
-            if (currentObject.second == obj.second)
+            if (currentObject.first == obj.first)
                 data.remove(index);
             index++;
         }

@@ -1,6 +1,7 @@
 #ifndef LIB_TABLETREE_TABLE_H_
 #define LIB_TABLETREE_TABLE_H_
 
+#include <algorithm>
 #include "../lib_i_table/table.h"
 #include "../lib_polynomial/polynomial.h"
 
@@ -78,7 +79,7 @@ private:
         return getHeight(node->right) - getHeight(node->left);
     }
     void updateHeight(CNodeTree<Type>* node) {
-        node->height = std::max(getHeight(node->left), getHeight(node->right)) + 1;
+        node->height = max(getHeight(node->left), getHeight(node->right)) + 1;
     }
     CNodeTree<Type>* rotateRight(CNodeTree<Type>* node) {
         CNodeTree<Type>* newRoot = node->left;
@@ -147,6 +148,13 @@ private:
             return balance(min);
         }
 
+        return balance(node);
+    }
+    CNodeTree<Type>* removeMin(CNodeTree<Type>* node) {
+        if (node->left == nullptr) {
+            return node->right;
+        }
+        node->left = removeMin(node->left);
         return balance(node);
     }
 

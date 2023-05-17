@@ -36,7 +36,7 @@ public:
 		size_t index = hashFunction(obj);
 		std::vector<Type>& vec = data[index];
 		for (auto it = vec.begin(); it != vec.end(); ++it) {
-			if (it->second == obj.second) {
+			if (it->first == obj.first) {
 				vec.erase(it);
 				break;
 			}

@@ -1,0 +1,47 @@
+﻿  Form1.cpp
+C:\Users\dimos\lab_work_second_semester\lib_polynomial\polynomial.cpp(563,27): warning C4552: "*": результат выражения не используется
+C:\Users\dimos\lab_work_second_semester\lib_table_hash_list\hash_list.h(53,1): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\dimos\lab_work_second_semester\lib_table_hash_list\hash_list.h(52,1): message : во время компиляции функции-члена класс шаблон "void CHashTableList<std::pair<std::string,CPolynomial>>::remove(Type)"
+          with
+          [
+              Type=std::pair<std::string,CPolynomial>
+          ]
+C:\Users\dimos\lab_work_second_semester\VisualProgramm\Form1.h(718,17): message : выполняется компиляция ссылки на экземпляр шаблон функции "void CHashTableList<std::pair<std::string,CPolynomial>>::remove(Type)"
+          with
+          [
+              Type=std::pair<std::string,CPolynomial>
+          ]
+C:\Users\dimos\lab_work_second_semester\VisualProgramm\Form1.h(31,54): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "CHashTableList<std::pair<std::string,CPolynomial>>"
+C:\Users\dimos\lab_work_second_semester\lib_table_hash_list\hash_list.h(19,1): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\dimos\lab_work_second_semester\lib_table_hash_list\hash_list.h(17,1): message : во время компиляции функции-члена класс шаблон "void CHashTableList<std::pair<std::string,CPolynomial>>::insert(Type)"
+          with
+          [
+              Type=std::pair<std::string,CPolynomial>
+          ]
+C:\Users\dimos\lab_work_second_semester\VisualProgramm\Form1.h(70,18): message : выполняется компиляция ссылки на экземпляр шаблон функции "void CHashTableList<std::pair<std::string,CPolynomial>>::insert(Type)"
+          with
+          [
+              Type=std::pair<std::string,CPolynomial>
+          ]
+C:\Users\dimos\lab_work_second_semester\lib_table_linear_list\linear_list.h(94,1): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\dimos\lab_work_second_semester\lib_table_linear_list\linear_list.h(93,1): message : во время компиляции функции-члена класс шаблон "int CLinearTableList<std::pair<std::string,CPolynomial>>::getsize(void)"
+C:\Users\dimos\lab_work_second_semester\VisualProgramm\Form1.h(124,13): message : выполняется компиляция ссылки на экземпляр шаблон функции "int CLinearTableList<std::pair<std::string,CPolynomial>>::getsize(void)"
+C:\Users\dimos\lab_work_second_semester\VisualProgramm\Form1.h(28,56): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "CLinearTableList<std::pair<std::string,CPolynomial>>"
+C:\Users\dimos\lab_work_second_semester\lib_table_tree\tree.h(252,21): warning C4930: CPolynomial poly(void): функция с прототипом не вызвана (предполагалось определение переменной?)
+C:\Users\dimos\lab_work_second_semester\lib_table_tree\tree.h(239,1): message : во время компиляции функции-члена класс шаблон "Type CTreeTable<Type>::find(std::string)"
+          with
+          [
+              Type=std::pair<std::string,CPolynomial>
+          ]
+C:\Users\dimos\lab_work_second_semester\VisualProgramm\Form1.h(819,10): message : выполняется компиляция ссылки на экземпляр шаблон функции "Type CTreeTable<Type>::find(std::string)"
+          with
+          [
+              Type=std::pair<std::string,CPolynomial>
+          ]
+C:\Users\dimos\lab_work_second_semester\VisualProgramm\Form1.h(26,50): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "CTreeTable<std::pair<std::string,CPolynomial>>"
+C:\Users\dimos\lab_work_second_semester\lib_list\list.h(156): warning C4715: CList<CMonomial>::pop_front: значение возвращается не при всех путях выполнения
+C:\Users\dimos\lab_work_second_semester\lib_table_linear_array\linear_array.h(60): warning C4715: CLinearTableArray<std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,CPolynomial> >::find: значение возвращается не при всех путях выполнения
+C:\Users\dimos\lab_work_second_semester\lib_list\list.h(156): warning C4715: CList<std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,CPolynomial> >::pop_front: значение возвращается не при всех путях выполнения
+C:\Users\dimos\lab_work_second_semester\lib_table_linear_list\linear_list.h(62): warning C4715: CLinearTableList<std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,CPolynomial> >::find: значение возвращается не при всех путях выполнения
+  Form1.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  VisualProgramm.vcxproj -> C:\Users\dimos\lab_work_second_semester\build\x64\Debug\VisualProgramm.exe

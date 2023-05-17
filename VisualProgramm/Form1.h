@@ -443,6 +443,7 @@ namespace VisualProgramm {
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(172, 20);
 			this->textBox5->TabIndex = 9;
+			this->textBox5->TextChanged += gcnew System::EventHandler(this, &Form1::textBox5_TextChanged);
 			// 
 			// button1
 			// 
@@ -530,6 +531,7 @@ namespace VisualProgramm {
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(595, 429);
 			this->listBox1->TabIndex = 0;
+			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::listBox1_SelectedIndexChanged);
 			// 
 			// Form1
 			// 
@@ -539,6 +541,7 @@ namespace VisualProgramm {
 			this->Controls->Add(this->splitContainer1);
 			this->Name = L"Form1";
 			this->Text = L"Калькулятор Полиномов";
+			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			this->splitContainer1->Panel1->ResumeLayout(false);
 			this->splitContainer1->Panel1->PerformLayout();
 			this->splitContainer1->Panel2->ResumeLayout(false);
@@ -706,13 +709,14 @@ namespace VisualProgramm {
 		MarshalString(txtbox5string, polyString);
 		CPolynomial polynom;
 		polynom.Parse(polyString);
-		std::pair<std::string, CPolynomial> pair(polynom.toString(), polynom);
-		//tree.remove(pair); TODO: Fix removeMin being undefined.
+		std::pair<std::string, CPolynomial> pair(polyString, polynom);
+		tree.remove(pair);
 		orderArray.remove(pair);
 		linearList.remove(pair);
 		linearArray.remove(pair);
 		mixvector.remove(pair);
 		mixlist.remove(pair);
+		needTableUpdate = true;
 	}
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 		String^ strx = textBox6->Text;
@@ -746,8 +750,9 @@ namespace VisualProgramm {
 			std::string* arrstring = new std::string[size];
 			arrstring = stringParser(mixlist.printstring(), size);
 			for (int i = 0; i < size; i++) {
-				if (arrstring[i] == calcItem) {
-					//res = mixlist.find(calcItem).second.findResult(x, y, z, calcItem); TODO: fix find.
+				if (arrstring[i] == ssItem) {
+					res = mixlist.find(calcItem).second.findResult(x, y, z, calcItem);
+					MessageBox::Show("Your result is: " + res.ToString());
 					break;
 				}
 			}
@@ -798,7 +803,7 @@ namespace VisualProgramm {
 			arrstring = stringParser(orderArray.printstring(), size);
 			for (int i = 0; i < size; i++) {
 				if (arrstring[i] == ssItem) {
-					//res = orderArray.find(calcItem).second.findResult(x, y, z, calcItem); TODO fix find with [;
+					res = orderArray.find(calcItem).second.findResult(x, y, z, calcItem);
 					MessageBox::Show("Your result is: " + res.ToString());
 					break;
 				}
@@ -820,5 +825,11 @@ namespace VisualProgramm {
 		}
 		}
 	}
+private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void listBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox5_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
