@@ -8,14 +8,18 @@ include(cmake/function.cmake)
                                  
 								 
 
-add_subdirectory(lib_datastructure)
-add_subdirectory(lib_stack)
-add_subdirectory(lib_queue)
+
+add_subdirectory(lib_i_table)
 add_subdirectory(lib_list)
-add_subdirectory(lib_lsq)
 add_subdirectory(lib_polynomial)
+add_subdirectory(lib_stack)
+add_subdirectory(lib_table_hash_list)
+add_subdirectory(lib_table_hash_vector)
+add_subdirectory(lib_table_linear_array)
+add_subdirectory(lib_table_linear_list)
+add_subdirectory(lib_table_ordered_array)
+add_subdirectory(lib_table_tree)
 add_subdirectory(main)
-add_subdirectory(CppCLR_WinFormsProject1)           
 
 option(BTEST "build test?" ON)   
 
